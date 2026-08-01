@@ -1,0 +1,51 @@
+---
+title: "CQRS Is a Tool, Not a Religion"
+summary: "When separating reads from writes pays off, when it doesn't, and how to adopt CQRS incrementally."
+date: "2026-05-02"
+category: ".NET"
+tags:
+  - cqrs
+  - architecture
+  - dotnet
+---
+
+CQRS — Command Query Responsibility Segregation — simply means your **write model**
+and **read model** don't have to be the same shape. That's it. No event sourcing
+required, no separate databases mandated.
+
+## The problem it solves
+
+Rich domain models are great for enforcing invariants but awful for querying. A
+normalized aggregate makes a dashboard query painful. CQRS lets each side optimize
+for its job.
+
+```csharp
+// Write side: guard invariants
+public record ReserveSeat(EnrollmentId Id) : ICommand;
+
+// Read side: shaped for the screen
+public sealed record SectionAvailability(
+    Guid SectionId, string Name, int SeatsLeft);
+```
+
+## Levels of adoption
+
+1. **Separate methods** — the cheapest split, same database.
+2. **Separate models** — denormalized read models, still one store.
+3. **Separate stores** — read replica or a dedicated projection store.
+
+Most teams should stop at level 2.
+
+<Callout type="success">
+  Start simple. You can move from separated methods to projected read models
+  without rewriting your domain.
+</Callout>
+
+## When to avoid it
+
+If your reads and writes are basically the same shape, CQRS just adds indirection.
+Reach for it when query and command needs genuinely diverge.
+
+## Takeaway
+
+CQRS is a spectrum. Adopt the smallest amount that removes your actual pain.

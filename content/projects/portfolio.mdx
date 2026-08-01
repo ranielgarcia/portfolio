@@ -1,0 +1,56 @@
+---
+title: "Developer Portfolio"
+summary: "This site — a statically generated portfolio built with Next.js, TypeScript, Tailwind CSS, and MDX."
+technologies:
+  - Next.js
+  - TypeScript
+  - Tailwind CSS
+  - MDX
+github: "https://github.com/ranielgarcia/portfolio"
+demo: ""
+cover: ""
+featured: true
+order: 2
+---
+
+## Overview
+
+A fast, SEO-friendly personal portfolio that doubles as a writing platform. Content
+lives in MDX files, so blog posts and project case studies are version-controlled
+alongside the code.
+
+## Problem
+
+I wanted a single place to show engineering decision-making — not just a list of
+technologies — while keeping the authoring workflow as simple as writing Markdown.
+
+## Solution
+
+The site is fully statically generated with the Next.js App Router. MDX is compiled
+on the server with a remark/rehype pipeline that adds slugged headings, autolinking,
+and syntax highlighting.
+
+## Architecture
+
+```text
+content/*.mdx ──▶ gray-matter (front matter)
+                 ──▶ next-mdx-remote/rsc (compile)
+                 ──▶ remark-gfm + rehype-slug + rehype-pretty-code
+                 ──▶ statically rendered pages
+```
+
+## Design Decisions
+
+- **MDX over a CMS** to keep content in Git with the code.
+- **Server components** for content rendering, zero client JS on articles.
+- **Design tokens** via CSS variables for effortless dark mode.
+
+## Lessons Learned
+
+Keeping the content pipeline in the framework (rather than a headless CMS) made the
+whole thing easier to reason about and deploy.
+
+## Future Improvements
+
+- Full-text search with Fuse.js.
+- Automated Open Graph image generation per post.

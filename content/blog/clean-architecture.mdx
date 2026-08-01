@@ -1,0 +1,58 @@
+---
+title: "Clean Architecture in .NET Without the Ceremony"
+summary: "How to apply Clean Architecture pragmatically in ASP.NET Core — the boundaries that matter and the ones you can skip."
+date: "2026-06-18"
+category: "Architecture"
+tags:
+  - clean-architecture
+  - dotnet
+  - design
+---
+
+Clean Architecture gets a bad reputation for adding folders and interfaces you never
+needed. Used well, though, it's really about one thing: **keeping your domain
+independent of frameworks and I/O**.
+
+## The dependency rule
+
+Everything points inward. The domain knows nothing about the database, the web, or
+your message broker. That single rule buys you testability and the freedom to swap
+infrastructure later.
+
+```csharp
+public sealed class Enrollment
+{
+    public EnrollmentId Id { get; }
+    public SeatCount Remaining { get; private set; }
+
+    public void Reserve()
+    {
+        if (Remaining.Value == 0)
+            throw new NoSeatsAvailableException(Id);
+
+        Remaining = Remaining.Decrement();
+    }
+}
+```
+
+## What actually earns its keep
+
+- **A real domain model** with behavior, not anemic data bags.
+- **An application layer** that orchestrates use cases and transactions.
+- **Ports** only where you have a genuine second implementation or need a test seam.
+
+<Callout type="warning">
+  You don't need an interface for every class. Add abstractions when you have a
+  reason — a second implementation, a boundary you want to test, or a volatile
+  dependency.
+</Callout>
+
+## Where to skip the ceremony
+
+If a mapper, repository, or interface exists solely to satisfy a diagram, delete it.
+Architecture is about **managing change**, not collecting layers.
+
+## Takeaway
+
+Protect the domain, name your use cases, and add abstractions deliberately. That's
+90% of the value with 10% of the boilerplate.

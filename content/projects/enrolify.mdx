@@ -1,0 +1,70 @@
+---
+title: "Enrolify — Multi-Tenant School Enrollment Platform"
+summary: "A cloud-native enrollment and scheduling platform serving multiple schools from a single, isolated codebase."
+technologies:
+  - ASP.NET Core
+  - Wolverine
+  - Azure SQL
+  - Cosmos DB
+  - SignalR
+  - React
+github: "https://github.com/ranielgarcia/enrolify"
+demo: ""
+cover: ""
+featured: true
+order: 1
+---
+
+## Overview
+
+Enrolify is a multi-tenant SaaS platform that handles student enrollment, class
+scheduling, and billing for schools of varying sizes. Each tenant gets a fully
+isolated data boundary while sharing a single deployment.
+
+## Problem
+
+Schools were running spreadsheets and disconnected tools for enrollment. Peak
+enrollment windows created race conditions on limited class capacity, and staff
+had no real-time visibility into seat availability.
+
+## Solution
+
+I designed a domain-driven system around **Clean Architecture** with an
+application layer orchestrated by **Wolverine** messaging. Capacity checks run
+through a serialized command handler per class section to eliminate
+overbooking, and **SignalR** pushes live seat counts to the admin dashboard.
+
+<Callout type="info">
+  Tenancy is enforced at the data layer with a tenant filter, so a query can
+  never accidentally cross a tenant boundary.
+</Callout>
+
+## Architecture
+
+```text
+Client (React) ──▶ API (ASP.NET Core, FastEndpoints)
+                     │
+                     ├─▶ Application layer (Wolverine handlers)
+                     │        │
+                     │        ├─▶ Domain model (aggregates, invariants)
+                     │        └─▶ Outbox ──▶ background processing
+                     │
+                     └─▶ Azure SQL (relational) + Cosmos DB (read models)
+```
+
+## Design Decisions
+
+- **Serialized capacity handling** per section to guarantee correctness under load.
+- **CQRS read models** in Cosmos DB for fast, denormalized dashboards.
+- **Transactional outbox** so domain events publish reliably alongside writes.
+
+## Lessons Learned
+
+Optimistic concurrency alone wasn't enough during enrollment spikes — moving the
+capacity decision into a single-writer handler made the invariant trivial to reason
+about.
+
+## Future Improvements
+
+- Tenant-level usage metering and billing exports.
+- Blue/green deploys per tenant ring.

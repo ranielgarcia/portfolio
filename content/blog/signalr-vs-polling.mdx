@@ -1,0 +1,57 @@
+---
+title: "SignalR vs Polling: Choosing the Right Real-Time Strategy"
+summary: "A practical comparison of long-polling and SignalR for live updates, with guidance on when each wins."
+date: "2026-03-14"
+category: ".NET"
+tags:
+  - signalr
+  - realtime
+  - dotnet
+---
+
+"Real-time" spans a huge range of needs. Before reaching for WebSockets, it's worth
+asking how fresh your data actually needs to be.
+
+## Polling
+
+Polling is dead simple: the client asks for updates on an interval. It's stateless,
+cache-friendly, and works everywhere.
+
+```ts
+setInterval(async () => {
+  const res = await fetch("/api/sections/availability");
+  setSeats(await res.json());
+}, 5000);
+```
+
+The cost is latency and wasted requests when nothing changed.
+
+## SignalR
+
+SignalR maintains a persistent connection and pushes updates the instant they
+happen. It handles transport negotiation (WebSockets, SSE, long-polling) for you.
+
+```csharp
+await hubContext.Clients
+    .Group(sectionId)
+    .SendAsync("SeatsChanged", seatsLeft);
+```
+
+<Callout type="info">
+  SignalR shines when updates are frequent and low-latency matters — dashboards,
+  chat, collaborative editing, live seat counts.
+</Callout>
+
+## How to choose
+
+| Need                          | Prefer          |
+| ----------------------------- | --------------- |
+| Updates every few minutes     | Polling         |
+| Sub-second latency            | SignalR         |
+| Massive fan-out, simple infra | Polling + cache |
+| Bidirectional messaging       | SignalR         |
+
+## Takeaway
+
+Use polling until latency or request volume hurts — then reach for SignalR. Matching
+the tool to the freshness requirement keeps your infrastructure simple.
