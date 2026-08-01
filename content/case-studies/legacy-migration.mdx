@@ -1,0 +1,58 @@
+---
+title: "Migrating a Legacy PHP Monolith to .NET"
+summary: "A phased strangler-fig migration that modernized a critical app with zero unplanned downtime."
+date: "2026-04-22"
+role: "Migration Lead"
+problem: "A brittle PHP monolith blocked new features and was expensive to operate."
+outcome: "Fully migrated to ASP.NET Core over two quarters with no unplanned downtime."
+technologies:
+  - ASP.NET Core
+  - EF Core
+  - Azure App Service
+  - GitHub Actions
+metrics:
+  - label: "Unplanned downtime"
+    value: "0 min"
+  - label: "Deploy lead time"
+    value: "hours"
+  - label: "Error rate"
+    value: "-70%"
+order: 2
+---
+
+## Context
+
+The business depended on a PHP monolith that had grown organically for years. Every
+change was risky, and the deployment process was manual and slow.
+
+## Strategy
+
+I applied the **strangler-fig pattern**: stand up a new .NET application in front of
+the legacy system and migrate one capability at a time, routing traffic incrementally.
+
+```text
+Client ─▶ Reverse proxy
+           ├─▶ /orders  ─▶ .NET (migrated)
+           └─▶ /*       ─▶ legacy PHP (shrinking)
+```
+
+## Execution
+
+- Introduced an anti-corruption layer to translate between old and new models.
+- Backfilled data with idempotent, resumable jobs.
+- Added CI/CD with GitHub Actions to make deploys boring and frequent.
+
+<Callout type="success">
+  Each migrated route shipped behind a feature flag, so rollback was a config
+  change rather than a redeploy.
+</Callout>
+
+## Results
+
+The migration completed over two quarters with **zero unplanned downtime**, a 70%
+drop in error rate, and deploy lead times measured in hours instead of days.
+
+## Lessons Learned
+
+Incremental migration beats a big-bang rewrite: value ships continuously, and risk
+stays small and reversible at every step.

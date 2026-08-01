@@ -15,7 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu } from "@/components/icons";
+import { Menu, Search } from "@/components/icons";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -54,6 +54,11 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-1">
+          <Button asChild variant="ghost" size="icon" aria-label="Search">
+            <Link href="/search">
+              <Search className="size-5" />
+            </Link>
+          </Button>
           <ModeToggle />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>

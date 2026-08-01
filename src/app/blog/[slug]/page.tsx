@@ -60,9 +60,16 @@ export default async function BlogPostPage({
       <div className="lg:grid lg:grid-cols-[1fr_220px] lg:gap-12">
         <article className="min-w-0">
           <header className="space-y-4">
-            <Badge variant="secondary" className="font-normal">
-              {post.category}
-            </Badge>
+            <Link
+              href={`/blog/categories/${encodeURIComponent(post.category)}`}
+            >
+              <Badge
+                variant="secondary"
+                className="font-normal transition-colors hover:text-brand"
+              >
+                {post.category}
+              </Badge>
+            </Link>
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               {post.title}
             </h1>
@@ -86,9 +93,14 @@ export default async function BlogPostPage({
           {post.tags && post.tags.length > 0 ? (
             <div className="mt-10 flex flex-wrap gap-1.5">
               {post.tags.map((tag) => (
-                <Badge key={tag} variant="outline" className="font-normal">
-                  #{tag}
-                </Badge>
+                <Link key={tag} href={`/blog/tags/${encodeURIComponent(tag)}`}>
+                  <Badge
+                    variant="outline"
+                    className="font-normal transition-colors hover:border-brand/50 hover:text-brand"
+                  >
+                    #{tag}
+                  </Badge>
+                </Link>
               ))}
             </div>
           ) : null}

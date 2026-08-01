@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
-import { getAllPosts, getAllProjects } from "@/lib/content";
+import { getAllPosts, getAllProjects, getAllCaseStudies } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
@@ -11,6 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/experience",
     "/projects",
     "/blog",
+    "/case-studies",
+    "/architecture",
+    "/uses",
+    "/search",
     "/resume",
     "/contact",
   ].map((route) => ({
@@ -27,6 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const caseStudies = getAllCaseStudies().map((cs) => ({
+    url: `${base}/case-studies/${cs.slug}`,
+    lastModified: new Date(cs.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   const posts = getAllPosts().map((post) => ({
     url: `${base}/blog/${post.slug}`,
     lastModified: new Date(post.date),
@@ -34,5 +45,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...routes, ...projects, ...posts];
+  return [...routes, ...projects, ...caseStudies, ...posts];
 }

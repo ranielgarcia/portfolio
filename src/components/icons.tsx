@@ -35,6 +35,8 @@ export {
   CheckCircle2,
   Quote,
   Rss,
+  Star,
+  GitFork,
 } from "lucide-react";
 
 export type { LucideIcon };

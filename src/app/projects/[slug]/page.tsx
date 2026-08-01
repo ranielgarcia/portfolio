@@ -6,6 +6,7 @@ import { Mdx } from "@/components/mdx";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getAllProjects, getProjectBySlug } from "@/lib/content";
+import { getRepoMeta, RepoStats } from "@/lib/github";
 import { ArrowLeft, Github, ExternalLink } from "@/components/icons";
 
 export function generateStaticParams() {
@@ -35,6 +36,8 @@ export default async function ProjectPage({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) notFound();
+
+  const repoMeta = await getRepoMeta(project.github);
 
   return (
     <Container className="max-w-3xl py-12">
@@ -80,6 +83,8 @@ export default async function ProjectPage({
             </Button>
           ) : null}
         </div>
+
+        {repoMeta ? <RepoStats meta={repoMeta} /> : null}
       </div>
 
       <hr className="my-8 border-border" />

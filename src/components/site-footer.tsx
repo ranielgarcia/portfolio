@@ -34,6 +34,28 @@ export function SiteFooter() {
           </div>
 
           <div className="space-y-2">
+            <p className="text-sm font-semibold">Explore</p>
+            <ul className="space-y-1.5">
+              {[
+                { title: "Case Studies", href: "/case-studies" },
+                { title: "Architecture", href: "/architecture" },
+                { title: "Uses", href: "/uses" },
+                { title: "Search", href: "/search" },
+                { title: "RSS Feed", href: "/feed.xml" },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="space-y-2">
             <p className="text-sm font-semibold">Connect</p>
             <ul className="space-y-1.5">
               {socialLinks.map((link) => (

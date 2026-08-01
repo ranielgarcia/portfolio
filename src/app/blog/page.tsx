@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { BlogCard } from "@/components/blog-card";
@@ -9,6 +10,11 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Writing on software architecture, .NET, Azure, and engineering decision-making.",
+  alternates: {
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
+  },
 };
 
 export default function BlogPage() {
@@ -26,13 +32,17 @@ export default function BlogPage() {
         {categories.length > 0 ? (
           <div className="mb-8 flex flex-wrap gap-2">
             {categories.map((category) => (
-              <Badge
+              <Link
                 key={category.name}
-                variant="outline"
-                className="font-normal"
+                href={`/blog/categories/${encodeURIComponent(category.name)}`}
               >
-                {category.name} ({category.count})
-              </Badge>
+                <Badge
+                  variant="outline"
+                  className="font-normal transition-colors hover:border-brand/50 hover:text-brand"
+                >
+                  {category.name} ({category.count})
+                </Badge>
+              </Link>
             ))}
           </div>
         ) : null}

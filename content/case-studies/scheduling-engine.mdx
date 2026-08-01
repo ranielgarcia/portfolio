@@ -1,0 +1,61 @@
+---
+title: "Designing a Scheduling Engine for Peak Enrollment"
+summary: "How a single-writer capacity model eliminated overbooking during enrollment spikes without sacrificing throughput."
+date: "2026-07-10"
+role: "Lead Engineer"
+problem: "Concurrent enrollment requests were overbooking limited class sections during peak windows."
+outcome: "Zero overbooking incidents across three enrollment cycles with sub-second confirmation times."
+technologies:
+  - ASP.NET Core
+  - Wolverine
+  - Azure SQL
+  - Redis
+metrics:
+  - label: "Overbooking incidents"
+    value: "0"
+  - label: "p95 confirmation"
+    value: "480ms"
+  - label: "Peak throughput"
+    value: "3k req/s"
+order: 1
+---
+
+## Context
+
+During enrollment windows, thousands of students compete for a fixed number of seats
+in each class section. Optimistic concurrency alone produced a stream of retries and,
+occasionally, overbooking when retries raced.
+
+## Constraints
+
+- Seat capacity is a hard invariant — never exceed it.
+- Confirmation must feel instant to the student.
+- The system must sustain bursty traffic during short windows.
+
+## Approach
+
+I moved the capacity decision behind a **single-writer handler per section**. Requests
+enqueue a `ReserveSeat` command; a Wolverine handler processes them serially per
+section key, making the invariant trivial to enforce.
+
+```csharp
+public async Task Handle(ReserveSeat cmd, ISectionRepository repo)
+{
+    var section = await repo.LoadAsync(cmd.SectionId);
+    section.Reserve(); // throws when full — no race possible
+    await repo.SaveAsync(section);
+}
+```
+
+A Redis-backed availability cache serves read traffic so the dashboards stay fast
+without touching the write path.
+
+## Results
+
+Across three enrollment cycles there were **zero overbooking incidents**, p95
+confirmation stayed under 500ms, and the system handled peak bursts comfortably.
+
+## Lessons Learned
+
+Serializing just the contended decision — rather than the whole request — kept
+correctness simple while preserving throughput everywhere else.

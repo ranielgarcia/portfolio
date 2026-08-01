@@ -72,6 +72,18 @@ export function getPostBySlug(slug: string): Post | undefined {
   return getAllPosts().find((post) => post.slug === slug);
 }
 
+export function getPostsByTag(tag: string): Post[] {
+  const target = tag.toLowerCase();
+  return getAllPosts().filter((post) =>
+    (post.tags ?? []).some((t) => t.toLowerCase() === target),
+  );
+}
+
+export function getPostsByCategory(category: string): Post[] {
+  const target = category.toLowerCase();
+  return getAllPosts().filter((post) => post.category.toLowerCase() === target);
+}
+
 export function getAllCategories(): { name: string; count: number }[] {
   const map = new Map<string, number>();
   for (const post of getAllPosts()) {
@@ -125,4 +137,45 @@ export function getProjectBySlug(slug: string): Project | undefined {
 
 export function getFeaturedProjects(): Project[] {
   return getAllProjects().filter((project) => project.featured);
+}
+
+/* ------------------------- Case Studies ------------------------- */
+
+export type CaseStudyFrontMatter = {
+  title: string;
+  summary: string;
+  date: string;
+  role?: string;
+  problem?: string;
+  outcome?: string;
+  technologies?: string[];
+  metrics?: { label: string; value: string }[];
+  draft?: boolean;
+  order?: number;
+};
+
+export type CaseStudy = {
+  slug: string;
+  content: string;
+  readingTime: string;
+} & CaseStudyFrontMatter;
+
+export function getAllCaseStudies(): CaseStudy[] {
+  return readCollection("case-studies")
+    .map(({ slug, raw }) => {
+      const { content, data } = matter(raw);
+      const fm = data as CaseStudyFrontMatter;
+      return {
+        slug,
+        content,
+        readingTime: readingTime(content).text,
+        ...fm,
+      };
+    })
+    .filter((cs) => process.env.NODE_ENV === "development" || !cs.draft)
+    .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+}
+
+export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
+  return getAllCaseStudies().find((cs) => cs.slug === slug);
 }

@@ -211,3 +211,101 @@ export const recommendations: Recommendation[] = [
       "Raniel bridges product and engineering effortlessly. He ships reliably and always keeps the long-term health of the codebase in mind.",
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Uses                                                                */
+/* ------------------------------------------------------------------ */
+
+export type UsesItem = {
+  name: string;
+  description: string;
+};
+
+export type UsesGroup = {
+  category: string;
+  items: UsesItem[];
+};
+
+export const uses: UsesGroup[] = [
+  {
+    category: "Hardware",
+    items: [
+      {
+        name: '16" MacBook Pro (M3 Pro)',
+        description: "Primary machine for day-to-day development.",
+      },
+      {
+        name: 'Dual 27" 4K monitors',
+        description: "One for the editor, one for docs and terminals.",
+      },
+      {
+        name: "Keychron K3 (low-profile)",
+        description: "Compact mechanical keyboard with brown switches.",
+      },
+      {
+        name: "Logitech MX Master 3S",
+        description: "Comfortable for long sessions and quick gestures.",
+      },
+    ],
+  },
+  {
+    category: "Editor & Terminal",
+    items: [
+      {
+        name: "Visual Studio & VS Code",
+        description: "VS for heavy .NET work, VS Code for everything else.",
+      },
+      {
+        name: "JetBrains Rider",
+        description:
+          "When I want first-class refactoring on cross-platform projects.",
+      },
+      {
+        name: "Windows Terminal + PowerShell",
+        description: "With oh-my-posh for a readable prompt.",
+      },
+      {
+        name: "GitHub Copilot",
+        description: "Pair-programming for boilerplate and exploration.",
+      },
+    ],
+  },
+  {
+    category: "Development",
+    items: [
+      {
+        name: ".NET & ASP.NET Core",
+        description: "The core of most of my backend work.",
+      },
+      {
+        name: "Azure",
+        description: "App Service, Container Apps, Service Bus, and SQL.",
+      },
+      {
+        name: "Docker & GitHub Actions",
+        description: "Reproducible builds and boring, frequent deploys.",
+      },
+      {
+        name: "PostgreSQL & Redis",
+        description: "Reliable defaults for storage and caching.",
+      },
+    ],
+  },
+  {
+    category: "Productivity",
+    items: [
+      {
+        name: "Obsidian",
+        description: "Notes, decision records, and a personal knowledge base.",
+      },
+      {
+        name: "Linear",
+        description: "Lightweight issue tracking that stays out of the way.",
+      },
+      {
+        name: "Raycast",
+        description: "Launcher, clipboard history, and snippets.",
+      },
+    ],
+  },
+];
