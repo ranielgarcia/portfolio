@@ -67,7 +67,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="absolute -inset-3 -z-10 rounded-full bg-brand/20 blur-2xl" />
               <Image
-                src="/profile.svg"
+                src="/profile.png"
                 alt={siteConfig.name}
                 width={260}
                 height={260}
