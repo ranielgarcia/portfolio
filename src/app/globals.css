@@ -143,26 +143,28 @@
 }
 
 /* rehype-pretty-code / shiki */
-[data-rehype-pretty-code-figure] pre {
+figure[data-rehype-pretty-code-figure] pre {
   @apply overflow-x-auto rounded-lg border bg-[#0d1117] py-4 text-sm leading-relaxed;
 }
 
-[data-rehype-pretty-code-figure] code {
+figure[data-rehype-pretty-code-figure] code {
   @apply grid;
   counter-reset: line;
 }
 
-[data-rehype-pretty-code-figure] code[data-line-numbers] > [data-line]::before {
+figure[data-rehype-pretty-code-figure]
+  code[data-line-numbers]
+  > [data-line]::before {
   counter-increment: line;
   content: counter(line);
   @apply mr-4 inline-block w-4 text-right text-white/25;
 }
 
-[data-rehype-pretty-code-figure] [data-line] {
+figure[data-rehype-pretty-code-figure] [data-line] {
   @apply border-l-2 border-transparent px-4;
 }
 
-[data-rehype-pretty-code-figure] [data-highlighted-line] {
+figure[data-rehype-pretty-code-figure] [data-highlighted-line] {
   @apply border-brand/60 bg-white/5;
 }
 
@@ -177,6 +179,7 @@
 /* Inline code inside prose */
 .prose :not(pre) > code {
   @apply rounded-md border bg-muted px-1.5 py-0.5 font-mono text-[0.85em] font-medium before:content-none after:content-none;
+  white-space: nowrap;
 }
 
 .prose {
