@@ -1,13 +1,21 @@
 ---
-title: "Enrolify — Multi-Tenant School Enrollment Platform"
-summary: "A cloud-native enrollment and scheduling platform serving multiple schools from a single, isolated codebase."
+title: "Enrollify — College Enrollment Management System"
+summary: "Enrollify is a full-stack, web-based enrollment management system designed for colleges and universities. It digitizes and streamlines the entire academic lifecycle — from setting up master data and building class schedules, to managing student enrollments, computing fees, recording grades, and generating official documents."
 technologies:
   - ASP.NET Core
   - Wolverine
-  - Azure SQL
-  - Cosmos DB
+  - MediatR
+  - CQRS
+  - Value Object
+  - Azure SQL (SQL Server)
   - SignalR
   - React
+  - EF Core
+  - Clean Architecture
+  - Domain-Driven Design
+  - Azure Storage Account
+  - FastEndpoints
+  - Aspire
 github: "https://github.com/ranielgarcia/enrollify"
 demo: ""
 cover: ""
@@ -15,15 +23,10 @@ featured: true
 order: 1
 ---
 
-# Enrollify — College Enrollment Management System
-
-**Enrollify** is a full-stack, web-based enrollment management system designed for colleges and universities. It digitizes and streamlines the entire academic lifecycle — from setting up master data and building class schedules, to managing student enrollments, computing fees, recording grades, and generating official documents.
-
----
-
 ## Table of Contents
 
 - [System Summary](#system-summary)
+- [Screenshots](#screenshots)
 - [System Architecture](#system-architecture)
 - [Domain-Driven Design & Clean Architecture](#domain-driven-design--clean-architecture)
 - [Tech Stack & Libraries](#tech-stack--libraries)
@@ -134,6 +137,50 @@ Enrollment features include:
 | **CoR**               | Certificate of Registration — official list of enrolled subjects and schedule per term                |
 | **Assessment**        | Computed charges (tuition + miscellaneous fees) for a given term                                      |
 | **Clearance**         | Finance flag that allows a student to enroll despite an outstanding balance                           |
+
+---
+
+## Screenshots
+
+<figure>
+  <Image
+    src="/projects/enrollify/Enrollify-Class-Section-Scheduling.png"
+    alt="Class Section Scheduling — subject offerings with teacher and room assignments, automatic conflict detection highlighted"
+    width={1280}
+    height={720}
+    className="rounded-lg border"
+  />
+  <figcaption className="mt-2 text-center text-sm text-muted-foreground">
+    Class Section Scheduling — subject offerings with automatic room and teacher
+    conflict detection
+  </figcaption>
+</figure>
+
+<figure>
+  <Image
+    src="/projects/enrollify/Enrollify-Room-Schedule-page.png"
+    alt="Room Schedule page — weekly schedule view per room showing occupied and free time slots"
+    width={1280}
+    height={720}
+    className="rounded-lg border"
+  />
+  <figcaption className="mt-2 text-center text-sm text-muted-foreground">
+    Room Schedule — weekly occupancy view per physical room
+  </figcaption>
+</figure>
+
+<figure>
+  <video
+    src="/projects/enrollify/Enrollify-Curriculum-Builder.mp4"
+    controls
+    playsInline
+    className="w-full rounded-lg border"
+  />
+  <figcaption className="mt-2 text-center text-sm text-muted-foreground">
+    Curriculum Builder — curriculum versioning, subject prerequisites, and
+    year-level grouping
+  </figcaption>
+</figure>
 
 ---
 
