@@ -47,17 +47,21 @@ export type SkillGroup = {
   title: string;
   icon: LucideIcon;
   skills: string[];
+  /** OKLCH accent: [light mode, dark mode] */
+  accent: [string, string];
 };
 
 export const skillGroups: SkillGroup[] = [
   {
     title: "Languages",
     icon: Code2,
+    accent: ["oklch(0.54 0.21 264)", "oklch(0.72 0.16 264)"],
     skills: ["C#", "TypeScript", "JavaScript", "SQL"],
   },
   {
     title: "Backend",
     icon: Server,
+    accent: ["oklch(0.52 0.18 290)", "oklch(0.70 0.14 285)"],
     skills: [
       "ASP.NET Core",
       "EF Core",
@@ -69,11 +73,13 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Frontend",
     icon: Layers,
+    accent: ["oklch(0.54 0.16 220)", "oklch(0.72 0.13 215)"],
     skills: ["React", "Next.js", "Tailwind CSS"],
   },
   {
     title: "Cloud",
     icon: Cloud,
+    accent: ["oklch(0.54 0.15 200)", "oklch(0.72 0.12 200)"],
     skills: [
       "Azure App Service",
       "Azure SQL",
@@ -85,11 +91,13 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Databases",
     icon: Database,
+    accent: ["oklch(0.52 0.15 172)", "oklch(0.70 0.12 170)"],
     skills: ["SQL Server", "Azure SQL", "Cosmos DB", "MySQL"],
   },
   {
     title: "DevOps",
     icon: GitBranch,
+    accent: ["oklch(0.52 0.14 145)", "oklch(0.70 0.11 145)"],
     skills: [
       "Azure DevOps",
       "GitHub Actions",
