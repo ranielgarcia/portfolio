@@ -190,14 +190,3 @@ figure[data-rehype-pretty-code-figure] [data-highlighted-line] {
   @apply font-medium text-brand no-underline hover:underline;
 }
 
-/* Animated gradient text */
-.text-gradient {
-  background: linear-gradient(
-    to right,
-    var(--brand),
-    color-mix(in oklab, var(--brand) 50%, var(--foreground))
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}

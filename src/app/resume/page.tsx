@@ -57,14 +57,14 @@ export default function ResumePage() {
         </header>
 
         <section>
-          <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          <h3 className="mb-2 text-xs font-semibold tracking-wide text-muted-foreground">
             Summary
           </h3>
           <p className="text-sm text-muted-foreground">{about.summary[0]}</p>
         </section>
 
         <section>
-          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          <h3 className="mb-4 text-xs font-semibold tracking-wide text-muted-foreground">
             Experience
           </h3>
           <div className="space-y-6">
@@ -89,7 +89,7 @@ export default function ResumePage() {
         </section>
 
         <section>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          <h3 className="mb-3 text-xs font-semibold tracking-wide text-muted-foreground">
             Skills
           </h3>
           <div className="space-y-2 text-sm">

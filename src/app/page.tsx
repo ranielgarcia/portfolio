@@ -10,7 +10,7 @@ import { Recommendations } from "@/components/recommendations";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
 import { getFeaturedProjects, getAllPosts } from "@/lib/content";
-import { ArrowRight, Download, BookOpen, Sparkles } from "@/components/icons";
+import { ArrowRight, Download, BookOpen } from "@/components/icons";
 
 export default function HomePage() {
   const featured = getFeaturedProjects().slice(0, 3);
@@ -30,12 +30,8 @@ export default function HomePage() {
         />
         <Container className="flex flex-col-reverse items-center gap-10 pt-16 pb-12 md:flex-row md:justify-between md:pt-24">
           <Reveal className="max-w-xl">
-            <p className="mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm text-muted-foreground">
-              <Sparkles className="size-4 text-brand" />
-              {siteConfig.role}
-            </p>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Hi, I&apos;m <span className="text-gradient">Raniel Garcia</span>
+              Hi, I&apos;m <span className="text-brand">Raniel Garcia</span>
             </h1>
             <p className="mt-3 text-lg font-medium text-muted-foreground">
               {siteConfig.specialization}
@@ -65,7 +61,6 @@ export default function HomePage() {
 
           <Reveal delay={0.1}>
             <div className="relative">
-              <div className="absolute -inset-3 -z-10 rounded-full bg-brand/20 blur-2xl" />
               <Image
                 src="/profile.png"
                 alt={siteConfig.name}

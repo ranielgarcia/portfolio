@@ -65,7 +65,10 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <SiteFooter />
         </ThemeProvider>
-      </body>
+      {/* impeccable-live-start */}
+<script src="http://localhost:8400/live.js?token=b5485239-2fec-4172-865c-d67c9dcbee31"></script>
+{/* impeccable-live-end */}
+</body>
     </html>
   );
 }
