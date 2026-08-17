@@ -19,31 +19,31 @@ colors:
   destructive: "oklch(0.577 0.245 27.325)"
 typography:
   display:
-    fontFamily: "Geist, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "clamp(2.25rem, 5vw, 3rem)"
     fontWeight: 700
     lineHeight: 1.15
     letterSpacing: "-0.025em"
   headline:
-    fontFamily: "Geist, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "1.875rem"
     fontWeight: 700
     lineHeight: 1.2
     letterSpacing: "-0.025em"
   title:
-    fontFamily: "Geist, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "1.25rem"
     fontWeight: 600
     lineHeight: 1.4
     letterSpacing: "-0.01em"
   body:
-    fontFamily: "Geist, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.625
     letterSpacing: "normal"
   label:
-    fontFamily: "Geist, system-ui, sans-serif"
+    fontFamily: "Inter, system-ui, sans-serif"
     fontSize: "0.875rem"
     fontWeight: 500
     lineHeight: 1.5
@@ -122,7 +122,7 @@ Density is professional but not cramped. Headings are heavy and tight; body text
 - Heavy tracking-tight headings contrast with airy body copy
 - Borders and hover-lift are the depth vocabulary — no ambient shadows
 - Cards use border + background-match, never elevation
-- Geist Sans throughout; Geist Mono for code only
+- Inter Sans throughout; Geist Mono for code only
 
 **Anti-reference:** Agency portfolio theatrics, gradient showcases, neon glow effects, large decorative illustrations, or anything that performs creative rather than demonstrating engineering judgment.
 
@@ -143,7 +143,7 @@ Effectively monochrome with a single chromatic accent. The palette carries autho
 
 ## Typography
 
-Geist Sans everywhere except code. Bold, tight headings against comfortable body prose.
+Inter Sans everywhere except code. Bold, tight headings against comfortable body prose.
 
 - **Display** (2.25–3rem / bold / -0.025em): Hero heading — "Hi, I'm Raniel Garcia"
 - **Headline** (1.875rem / bold / -0.025em): Page-level `<h1>` titles
@@ -216,7 +216,7 @@ The system is essentially flat. Depth comes from borders and background contrast
 **Do:**
 - Use `text-brand` for a single name or label in a heading to create focal weight
 - Use borders and `hover:border-brand/50` for interactive card feedback
-- Let the Geist weight and scale speak — headings are already bold; no further decoration needed
+- Let the Inter weight and scale speak — headings are already bold; no further decoration needed
 - Restrict `backdrop-blur` to the sticky header only
 
 **Don't:**

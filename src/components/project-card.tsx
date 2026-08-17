@@ -11,6 +11,7 @@ import { ArrowUpRight } from "@/components/icons";
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
+    <div className="card-interactive h-full rounded-xl">
     <Card className="group relative flex h-full flex-col transition-colors hover:border-brand/50">
       <CardHeader>
         <div className="flex items-start justify-between gap-3">
@@ -41,5 +42,6 @@ export function ProjectCard({ project }: { project: Project }) {
         </CardFooter>
       ) : null}
     </Card>
+    </div>
   );
 }

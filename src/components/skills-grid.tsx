@@ -1,3 +1,4 @@
+import type React from "react";
 import { skillGroups } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -9,14 +10,21 @@ export function SkillsGrid() {
         const Icon = group.icon;
         const [light, dark] = group.accent;
         return (
-          <Card key={group.title}>
+          <div key={group.title} className="card-interactive rounded-xl">
+          <Card
+            style={
+              {
+                "--skill-accent": light,
+                "--skill-accent-dark": dark,
+              } as React.CSSProperties
+            }
+            className="transition-colors hover:border-brand/50"
+          >
             <CardHeader className="flex-row items-center gap-3 space-y-0">
               <span
                 className="flex size-9 items-center justify-center rounded-md"
                 style={
                   {
-                    "--skill-accent": light,
-                    "--skill-accent-dark": dark,
                     backgroundColor: "color-mix(in oklch, var(--skill-accent) 12%, transparent)",
                     color: "var(--skill-accent)",
                   } as React.CSSProperties
@@ -34,6 +42,7 @@ export function SkillsGrid() {
               ))}
             </CardContent>
           </Card>
+          </div>
         );
       })}
     </div>

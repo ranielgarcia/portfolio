@@ -8,6 +8,7 @@ import { ProjectCard } from "@/components/project-card";
 import { BlogCard } from "@/components/blog-card";
 import { Recommendations } from "@/components/recommendations";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { siteConfig } from "@/lib/site";
 import { getFeaturedProjects, getAllPosts } from "@/lib/content";
 import { ArrowRight, Download, BookOpen } from "@/components/icons";
@@ -28,8 +29,8 @@ export default function HomePage() {
               "radial-gradient(40rem 20rem at 50% -10%, color-mix(in oklab, var(--brand) 25%, transparent), transparent)",
           }}
         />
-        <Container className="flex flex-col-reverse items-center gap-10 pt-16 pb-12 md:flex-row md:justify-between md:pt-24">
-          <Reveal className="max-w-xl">
+        <Container className="flex flex-col-reverse items-center gap-10 pt-20 pb-16 md:flex-row md:justify-between md:pt-32 md:pb-24">
+          <Reveal className="max-w-lg">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
               Hi, I&apos;m <span className="text-brand">Raniel Garcia</span>
             </h1>
@@ -67,7 +68,7 @@ export default function HomePage() {
                 width={260}
                 height={260}
                 priority
-                className="size-52 rounded-full border-4 border-background object-cover shadow-xl sm:size-64"
+                className="size-52 rounded-full border-4 border-background object-cover shadow-xl ring-4 ring-brand/20 sm:size-64"
               />
             </div>
           </Reveal>
@@ -76,44 +77,52 @@ export default function HomePage() {
 
       {/* Featured Projects */}
       {featured.length > 0 && (
-        <Container className="py-12">
-          <SectionTitle
-            title="Featured Projects"
-            href="/projects"
-            linkLabel="All projects"
-          />
-          <div className="grid gap-4 md:grid-cols-3">
-            {featured.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        </Container>
+        <>
+          <Separator className="opacity-50" />
+          <Container className="py-16">
+            <SectionTitle
+              title="Featured Projects"
+              href="/projects"
+              linkLabel="All projects"
+            />
+            <div className="grid gap-5 md:grid-cols-3">
+              {featured.map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+            </div>
+          </Container>
+        </>
       )}
 
       {/* Skills */}
-      <Container className="py-12">
+      <Separator className="opacity-50" />
+      <Container className="py-16">
         <SectionTitle title="Skills &amp; Tooling" />
         <SkillsGrid />
       </Container>
 
       {/* Recent Posts */}
       {recentPosts.length > 0 && (
-        <Container className="py-12">
-          <SectionTitle
-            title="From the Blog"
-            href="/blog"
-            linkLabel="All posts"
-          />
-          <div className="grid gap-4 md:grid-cols-3">
-            {recentPosts.map((post) => (
-              <BlogCard key={post.slug} post={post} />
-            ))}
-          </div>
-        </Container>
+        <>
+          <Separator className="opacity-50" />
+          <Container className="py-16">
+            <SectionTitle
+              title="From the Blog"
+              href="/blog"
+              linkLabel="All posts"
+            />
+            <div className="grid gap-5 md:grid-cols-3">
+              {recentPosts.map((post) => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
+            </div>
+          </Container>
+        </>
       )}
 
       {/* Recommendations */}
-      <Container className="py-12">
+      <Separator className="opacity-50" />
+      <Container className="py-16">
         <SectionTitle title="What People Say" />
         <Recommendations />
       </Container>
@@ -131,9 +140,9 @@ function SectionTitle({
   linkLabel?: string;
 }) {
   return (
-    <div className="mb-6 flex items-end justify-between">
+    <div className="mb-8 flex items-end justify-between">
       <h2
-        className="text-2xl font-bold tracking-tight"
+        className="text-3xl font-bold tracking-tight"
         dangerouslySetInnerHTML={{ __html: title }}
       />
       {href && linkLabel ? (

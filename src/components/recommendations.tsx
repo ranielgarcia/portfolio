@@ -6,7 +6,8 @@ export function Recommendations() {
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {recommendations.map((rec) => (
-        <Card key={rec.name} className="flex h-full flex-col">
+        <div key={rec.name} className="card-interactive h-full rounded-xl">
+        <Card className="flex h-full flex-col transition-colors hover:border-brand/50">
           <CardContent className="flex flex-1 flex-col gap-5 pt-6">
             <Quote className="size-6 text-brand" />
             <p className="flex-1 text-base leading-relaxed text-foreground">
@@ -28,6 +29,7 @@ export function Recommendations() {
             </div>
           </CardContent>
         </Card>
+        </div>
       ))}
     </div>
   );
