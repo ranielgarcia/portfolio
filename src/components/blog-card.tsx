@@ -7,6 +7,7 @@ import { formatDate } from "@/lib/utils";
 
 export function BlogCard({ post }: { post: Post }) {
   return (
+    <div className="card-interactive h-full rounded-xl">
     <Card className="group relative flex h-full flex-col transition-colors hover:border-brand/50">
       <CardHeader>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -35,5 +36,6 @@ export function BlogCard({ post }: { post: Post }) {
         </span>
       </CardContent>
     </Card>
+    </div>
   );
 }

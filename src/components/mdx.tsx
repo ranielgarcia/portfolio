@@ -65,6 +65,7 @@ export function Mdx({
   className?: string;
 }) {
   const options: MDXRemoteProps["options"] = {
+    blockJS: false,
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
