@@ -1,4 +1,4 @@
-import { BaseImage as Image } from "@/components/base-image";
+import NextImage from "next/image";
 import Link from "next/link";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
@@ -59,7 +59,9 @@ function Anchor({ href = "", className, ...props }: ComponentProps<"a">) {
 
 const components = {
   a: Anchor,
-  Image,
+  // The MDX source has already been prefixed by prefixMediaSrcs(), so use
+  // plain next/image here — BaseImage would double-prefix the path.
+  Image: NextImage,
   Callout({
     type = "info",
     children,
