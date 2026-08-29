@@ -40,9 +40,13 @@ function Anchor({ href = "", className, ...props }: ComponentProps<"a">) {
 // src paths won't be rewritten with the basePath automatically. We prefix them
 // here so they resolve correctly on GitHub Pages (e.g. /portfolio/projects/...).
 function Video({ src, ...props }: ComponentProps<"video">) {
+  // src can be string | Blob | MediaSource | MediaStream per React types;
+  // we only need to rewrite root-relative string paths.
   const resolvedSrc =
-    src && src.startsWith("/") ? `${BASE_PATH}${src}` : src;
-  return <video src={resolvedSrc} {...props} />;
+    typeof src === "string" && src.startsWith("/")
+      ? `${BASE_PATH}${src}`
+      : src;
+  return <video src={resolvedSrc as string | undefined} {...props} />;
 }
 
 const components = {
