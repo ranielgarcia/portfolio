@@ -7,6 +7,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode, {
   type Options as PrettyCodeOptions,
 } from "rehype-pretty-code";
+import rehypeBasePath from "@/lib/rehype-base-path";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
@@ -15,10 +16,6 @@ const prettyCodeOptions: PrettyCodeOptions = {
   keepBackground: false,
   defaultLang: "plaintext",
 };
-
-// Resolve the basePath injected at build time (e.g. "/portfolio" on GitHub Pages).
-// Falls back to "" in local development.
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 function Anchor({ href = "", className, ...props }: ComponentProps<"a">) {
   const isExternal = /^https?:\/\//.test(href);
@@ -36,23 +33,9 @@ function Anchor({ href = "", className, ...props }: ComponentProps<"a">) {
   return <Link href={href} className={className} {...props} />;
 }
 
-// Raw <video> elements in MDX bypass Next.js routing, so their root-relative
-// src paths won't be rewritten with the basePath automatically. We prefix them
-// here so they resolve correctly on GitHub Pages (e.g. /portfolio/projects/...).
-function Video({ src, ...props }: ComponentProps<"video">) {
-  // src can be string | Blob | MediaSource | MediaStream per React types;
-  // we only need to rewrite root-relative string paths.
-  const resolvedSrc =
-    typeof src === "string" && src.startsWith("/")
-      ? `${BASE_PATH}${src}`
-      : src;
-  return <video src={resolvedSrc as string | undefined} {...props} />;
-}
-
 const components = {
   a: Anchor,
   Image,
-  video: Video,
   Callout({
     type = "info",
     children,
@@ -87,6 +70,11 @@ export function Mdx({
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
+        // Rewrite root-relative src attrs on <img>/<video>/<source> at
+        // SSG build time so they include the GitHub Pages basePath.
+        // Must run before rehype-pretty-code to avoid interfering with
+        // code block processing.
+        rehypeBasePath,
         rehypeSlug,
         [rehypePrettyCode, prettyCodeOptions],
         [
