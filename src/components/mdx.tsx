@@ -16,6 +16,10 @@ const prettyCodeOptions: PrettyCodeOptions = {
   defaultLang: "plaintext",
 };
 
+// Resolve the basePath injected at build time (e.g. "/portfolio" on GitHub Pages).
+// Falls back to "" in local development.
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 function Anchor({ href = "", className, ...props }: ComponentProps<"a">) {
   const isExternal = /^https?:\/\//.test(href);
   if (isExternal) {
@@ -32,9 +36,19 @@ function Anchor({ href = "", className, ...props }: ComponentProps<"a">) {
   return <Link href={href} className={className} {...props} />;
 }
 
+// Raw <video> elements in MDX bypass Next.js routing, so their root-relative
+// src paths won't be rewritten with the basePath automatically. We prefix them
+// here so they resolve correctly on GitHub Pages (e.g. /portfolio/projects/...).
+function Video({ src, ...props }: ComponentProps<"video">) {
+  const resolvedSrc =
+    src && src.startsWith("/") ? `${BASE_PATH}${src}` : src;
+  return <video src={resolvedSrc} {...props} />;
+}
+
 const components = {
   a: Anchor,
   Image,
+  video: Video,
   Callout({
     type = "info",
     children,
