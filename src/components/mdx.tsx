@@ -17,6 +17,30 @@ const prettyCodeOptions: PrettyCodeOptions = {
   defaultLang: "plaintext",
 };
 
+/**
+ * Rewrite root-relative src/href attrs in raw MDX source before compilation.
+ *
+ * Why here and not in a component or rehype plugin:
+ *  - React components: Turbopack's static export SSG doesn't reliably inline
+ *    process.env.BASE_PATH into RSC renders (not a NEXT_PUBLIC_ var).
+ *  - Rehype plugin (hast): MDX JSX elements (<video />, <Image />) are
+ *    represented as mdxJsxFlowElement nodes, not hast "element" nodes —
+ *    the plugin never sees them.
+ *
+ * Doing it on the raw string before MDXRemote compiles it is guaranteed:
+ * the substitution happens once at SSG build time, is baked into the HTML,
+ * and works regardless of bundler behavior.
+ */
+function prefixMediaSrcs(source: string, basePath: string): string {
+  if (!basePath) return source;
+  // Match src="/<something>" and href="/<something>" but not src=""
+  // or src="//external" (protocol-relative) or src="https://...".
+  return source.replace(
+    /\b(src|href)="(\/(?!\/))/g,
+    `$1="${basePath}/`,
+  );
+}
+
 function Anchor({ href = "", className, ...props }: ComponentProps<"a">) {
   const isExternal = /^https?:\/\//.test(href);
   if (isExternal) {
@@ -33,22 +57,9 @@ function Anchor({ href = "", className, ...props }: ComponentProps<"a">) {
   return <Link href={href} className={className} {...props} />;
 }
 
-// <video> in MDX is JSX, not raw HTML — the rehype pipeline never sees it as
-// a hast element node. This RSC component intercepts it and prepends BASE_PATH
-// (the server-side env var set by the workflow) to root-relative src strings.
-function Video({ src, ...props }: ComponentProps<"video">) {
-  const basePath = process.env.BASE_PATH ?? "";
-  const resolvedSrc =
-    typeof src === "string" && src.startsWith("/")
-      ? `${basePath}${src}`
-      : src;
-  return <video src={resolvedSrc as string | undefined} {...props} />;
-}
-
 const components = {
   a: Anchor,
   Image,
-  video: Video,
   Callout({
     type = "info",
     children,
@@ -78,15 +89,20 @@ export function Mdx({
   source: string;
   className?: string;
 }) {
+  // Prefix all root-relative src/href values in the raw MDX source before
+  // compilation. This is the most reliable method — it handles both JSX
+  // elements (<video>, <Image>) and raw HTML markdown (<img>, <video>) in
+  // one pass, with no runtime or bundler dependencies.
+  const basePath = process.env.BASE_PATH ?? "";
+  const prefixedSource = prefixMediaSrcs(source, basePath);
+
   const options: MDXRemoteProps["options"] = {
     blockJS: false,
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
-        // Rewrite root-relative src attrs on <img>/<video>/<source> at
-        // SSG build time so they include the GitHub Pages basePath.
-        // Must run before rehype-pretty-code to avoid interfering with
-        // code block processing.
+        // Still keep the rehype plugin for any raw HTML <img>/<video> that
+        // might come through the hast pipeline (e.g. from remark-gfm).
         rehypeBasePath,
         rehypeSlug,
         [rehypePrettyCode, prettyCodeOptions],
@@ -110,7 +126,7 @@ export function Mdx({
         className,
       )}
     >
-      <MDXRemote source={source} components={components} options={options} />
+      <MDXRemote source={prefixedSource} components={components} options={options} />
     </div>
   );
 }
