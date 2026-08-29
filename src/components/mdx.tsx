@@ -33,9 +33,22 @@ function Anchor({ href = "", className, ...props }: ComponentProps<"a">) {
   return <Link href={href} className={className} {...props} />;
 }
 
+// <video> in MDX is JSX, not raw HTML — the rehype pipeline never sees it as
+// a hast element node. This RSC component intercepts it and prepends BASE_PATH
+// (the server-side env var set by the workflow) to root-relative src strings.
+function Video({ src, ...props }: ComponentProps<"video">) {
+  const basePath = process.env.BASE_PATH ?? "";
+  const resolvedSrc =
+    typeof src === "string" && src.startsWith("/")
+      ? `${basePath}${src}`
+      : src;
+  return <video src={resolvedSrc as string | undefined} {...props} />;
+}
+
 const components = {
   a: Anchor,
   Image,
+  video: Video,
   Callout({
     type = "info",
     children,
