@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { BaseImage as Image } from "@/components/base-image";
 import Link from "next/link";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { BaseImage as Image } from "@/components/base-image";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
