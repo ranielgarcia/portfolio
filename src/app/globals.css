@@ -53,7 +53,8 @@
 }
 
 :root {
-  --construction-content-width: calc(100% - 2rem);
+  --construction-shell-width: min(64rem, 100%);
+  --construction-gutter: 0.75rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --brand: oklch(0.54 0.21 264);
@@ -138,10 +139,16 @@
   }
 }
 
-/* Tailwind-inspired page construction lines. */
+/* Container-aware precision rails. Decoration always stays inside page gutters. */
 .site-construction-lines {
-  --construction-line: color-mix(in oklab, var(--border) 82%, transparent);
-  --construction-hatch: color-mix(in oklab, var(--border) 52%, transparent);
+  --construction-line: color-mix(in oklab, var(--border) 88%, transparent);
+  --construction-outer-line: color-mix(
+    in oklab,
+    var(--border) 42%,
+    transparent
+  );
+  --construction-hatch: color-mix(in oklab, var(--border) 56%, transparent);
+  --construction-tick: color-mix(in oklab, var(--brand) 18%, transparent);
   pointer-events: none;
   position: absolute;
   inset: 0;
@@ -155,23 +162,21 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 2rem;
-  border-inline: 1px solid var(--construction-line);
-  background-image: repeating-linear-gradient(
-    135deg,
-    transparent 0,
-    transparent 4px,
-    var(--construction-hatch) 4px,
-    var(--construction-hatch) 5px
-  );
+  box-sizing: border-box;
+  width: var(--construction-gutter);
+  background-image: none;
 }
 
 .site-construction-lines::before {
-  left: calc(50% - var(--construction-content-width) / 2);
+  left: calc(50% - var(--construction-shell-width) / 2);
+  border-left: 1px solid var(--construction-outer-line);
+  border-right: 1px solid var(--construction-line);
 }
 
 .site-construction-lines::after {
-  right: calc(50% - var(--construction-content-width) / 2);
+  right: calc(50% - var(--construction-shell-width) / 2);
+  border-right: 1px solid var(--construction-outer-line);
+  border-left: 1px solid var(--construction-line);
 }
 
 .construction-divider {
@@ -180,13 +185,38 @@
 
 @media (min-width: 40rem) {
   :root {
-    --construction-content-width: calc(100% - 3rem);
+    --construction-gutter: 1.5rem;
+  }
+
+  .site-construction-lines::before,
+  .site-construction-lines::after {
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(4rem - 1px),
+        var(--construction-tick) calc(4rem - 1px),
+        var(--construction-tick) 4rem
+      ),
+      repeating-linear-gradient(
+        135deg,
+        transparent 0,
+        transparent 5px,
+        var(--construction-hatch) 5px,
+        var(--construction-hatch) 6px
+      );
   }
 }
 
 @media (min-width: 64rem) {
   :root {
-    --construction-content-width: min(64rem, calc(100% - 4rem));
+    --construction-gutter: 2rem;
+  }
+}
+
+@media print, (forced-colors: active) {
+  .site-construction-lines {
+    display: none;
   }
 }
 
