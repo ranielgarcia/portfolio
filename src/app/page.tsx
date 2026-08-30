@@ -1,6 +1,6 @@
-import { BaseImage as Image } from "@/components/base-image";
 import Link from "next/link";
 import { Container } from "@/components/container";
+import { ProfileHero } from "@/components/profile-hero";
 import { Reveal } from "@/components/reveal";
 import { SocialLinks } from "@/components/social-links";
 import { SkillsGrid } from "@/components/skills-grid";
@@ -9,7 +9,6 @@ import { BlogCard } from "@/components/blog-card";
 import { Recommendations } from "@/components/recommendations";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { siteConfig } from "@/lib/site";
 import { getFeaturedProjects, getAllPosts } from "@/lib/content";
 import { ArrowRight, Download, BookOpen } from "@/components/icons";
 
@@ -29,17 +28,16 @@ export default function HomePage() {
               "radial-gradient(40rem 20rem at 50% -10%, color-mix(in oklab, var(--brand) 25%, transparent), transparent)",
           }}
         />
-        <Container className="flex flex-col-reverse items-center gap-10 pt-20 pb-16 md:flex-row md:justify-between md:pt-32 md:pb-24">
-          <Reveal className="max-w-lg">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Hi, I&apos;m <span className="text-brand">Raniel Garcia</span>
-            </h1>
-            <p className="mt-3 text-lg font-medium text-muted-foreground">
-              {siteConfig.specialization}
-            </p>
-            <p className="mt-4 text-muted-foreground">{siteConfig.shortBio}</p>
+        <Container className="pt-20 pb-16 md:pt-28 md:pb-24">
+          <Reveal>
+            <ProfileHero />
+          </Reveal>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+          <Reveal
+            delay={0.1}
+            className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-between"
+          >
+            <div className="flex flex-wrap justify-center gap-3 sm:justify-start">
               <Button asChild size="lg">
                 <Link href="/projects">
                   View Projects <ArrowRight className="size-4" />
@@ -56,21 +54,7 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
-
-            <SocialLinks className="mt-6 -ml-2" />
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <div className="relative">
-              <Image
-                src="/profile.png"
-                alt={siteConfig.name}
-                width={260}
-                height={260}
-                priority
-                className="size-52 rounded-full border-4 border-background object-cover shadow-xl ring-4 ring-brand/20 sm:size-64"
-              />
-            </div>
+            <SocialLinks />
           </Reveal>
         </Container>
       </section>
@@ -140,15 +124,15 @@ function SectionTitle({
   linkLabel?: string;
 }) {
   return (
-    <div className="mb-8 flex items-end justify-between">
+    <div className="mb-8 flex items-end justify-between gap-4">
       <h2
-        className="text-3xl font-bold tracking-tight"
+        className="text-2xl font-bold tracking-tight sm:text-3xl"
         dangerouslySetInnerHTML={{ __html: title }}
       />
       {href && linkLabel ? (
         <Link
           href={href}
-          className="inline-flex items-center gap-1 text-sm font-medium text-brand hover:underline"
+          className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-brand hover:underline"
         >
           {linkLabel} <ArrowRight className="size-4" />
         </Link>

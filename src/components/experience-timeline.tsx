@@ -4,7 +4,7 @@ import { Briefcase } from "@/components/icons";
 
 export function ExperienceTimeline() {
   return (
-    <ol className="relative space-y-10 border-l border-border pl-8">
+    <ol className="relative ms-8 space-y-10 border-l border-border pl-8">
       {experiences.map((job) => (
         <li key={`${job.company}-${job.duration}`} className="relative">
           <span className="absolute -left-[41px] flex size-6 items-center justify-center rounded-full border bg-background text-brand">

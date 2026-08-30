@@ -53,6 +53,8 @@
 }
 
 :root {
+  --construction-shell-width: min(64rem, 100%);
+  --construction-gutter: 0.75rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --brand: oklch(0.54 0.21 264);
@@ -137,9 +139,154 @@
   }
 }
 
-/* ── Card hover cursor ───────────────────────────────────────────────────── */
+/* Container-aware precision rails. Decoration always stays inside page gutters. */
+.site-construction-lines {
+  --construction-line: color-mix(in oklab, var(--border) 88%, transparent);
+  --construction-outer-line: color-mix(
+    in oklab,
+    var(--border) 42%,
+    transparent
+  );
+  --construction-hatch: color-mix(in oklab, var(--border) 56%, transparent);
+  --construction-tick: color-mix(in oklab, var(--brand) 18%, transparent);
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.site-construction-lines::before,
+.site-construction-lines::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  width: var(--construction-gutter);
+  background-image: none;
+}
+
+.site-construction-lines::before {
+  left: calc(50% - var(--construction-shell-width) / 2);
+  border-left: 1px solid var(--construction-outer-line);
+  border-right: 1px solid var(--construction-line);
+}
+
+.site-construction-lines::after {
+  right: calc(50% - var(--construction-shell-width) / 2);
+  border-right: 1px solid var(--construction-outer-line);
+  border-left: 1px solid var(--construction-line);
+}
+
+.construction-divider {
+  border-color: color-mix(in oklab, var(--border) 82%, transparent);
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --construction-gutter: 1.5rem;
+  }
+
+  .site-construction-lines::before,
+  .site-construction-lines::after {
+    background-image:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(4rem - 1px),
+        var(--construction-tick) calc(4rem - 1px),
+        var(--construction-tick) 4rem
+      ),
+      repeating-linear-gradient(
+        135deg,
+        transparent 0,
+        transparent 5px,
+        var(--construction-hatch) 5px,
+        var(--construction-hatch) 6px
+      );
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --construction-gutter: 2rem;
+  }
+}
+
+@media print, (forced-colors: active) {
+  .site-construction-lines {
+    display: none;
+  }
+}
+
+/* Interactive cards keep their movement subtle and reserve it for pointers. */
 .card-interactive {
   cursor: pointer;
+  position: relative;
+  isolation: isolate;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.card-interactive::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 1;
+  width: 2px;
+  background: var(--brand);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.card-interactive:focus-within {
+  border-color: color-mix(in oklab, var(--brand) 52%, var(--border));
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--brand) 16%, transparent),
+    0 18px 42px -28px color-mix(in oklab, var(--foreground) 38%, transparent);
+}
+
+.card-interactive:focus-within::before {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-interactive:hover {
+    border-color: color-mix(in oklab, var(--brand) 42%, var(--border));
+    box-shadow:
+      0 1px 2px color-mix(in oklab, var(--foreground) 5%, transparent),
+      0 20px 44px -28px color-mix(in oklab, var(--foreground) 42%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .card-interactive:hover::before {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-interactive,
+  .card-interactive::before {
+    transition: none;
+  }
+
+  .card-interactive:hover {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .card-interactive:focus-within {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  .card-interactive::before {
+    display: none;
+  }
 }
 
 /* Selection */
