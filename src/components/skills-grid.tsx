@@ -1,48 +1,48 @@
 import type React from "react";
 import { skillGroups } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export function SkillsGrid() {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid auto-rows-fr gap-px overflow-hidden rounded-md border bg-border sm:grid-cols-2 lg:grid-cols-3">
       {skillGroups.map((group) => {
         const Icon = group.icon;
         const [light, dark] = group.accent;
+
         return (
-          <div key={group.title} className="card-interactive rounded-xl">
-          <Card
+          <article
+            key={group.title}
             style={
               {
                 "--skill-accent": light,
                 "--skill-accent-dark": dark,
               } as React.CSSProperties
             }
-            className="transition-colors hover:border-brand/50"
+            className="flex h-full min-h-48 flex-col items-center justify-center bg-background px-6 py-8 text-center transition-colors hover:bg-muted/35"
           >
-            <CardHeader className="flex-row items-center gap-3 space-y-0">
+            <div className="flex items-center justify-center gap-3">
               <span
-                className="flex size-9 items-center justify-center rounded-md"
+                className="flex size-10 shrink-0 items-center justify-center rounded-md"
                 style={
                   {
-                    backgroundColor: "color-mix(in oklch, var(--skill-accent) 12%, transparent)",
+                    backgroundColor:
+                      "color-mix(in oklch, var(--skill-accent) 12%, transparent)",
                     color: "var(--skill-accent)",
                   } as React.CSSProperties
                 }
               >
                 <Icon className="size-5" />
               </span>
-              <h3 className="font-semibold">{group.title}</h3>
-            </CardHeader>
-            <CardContent className="flex flex-wrap gap-1.5">
+              <h3 className="text-lg font-semibold">{group.title}</h3>
+            </div>
+            <div className="mt-5 flex flex-wrap justify-center gap-1.5">
               {group.skills.map((skill) => (
                 <Badge key={skill} variant="secondary" className="font-normal">
                   {skill}
                 </Badge>
               ))}
-            </CardContent>
-          </Card>
-          </div>
+            </div>
+          </article>
         );
       })}
     </div>
