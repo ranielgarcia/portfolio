@@ -68,22 +68,22 @@ export default async function CaseStudyPage({
       {(cs.problem || cs.outcome) && (
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {cs.problem ? (
-            <Card>
-              <CardContent className="pt-6">
-                <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            <Card className="border-l-2 border-l-destructive/60 bg-muted/15">
+              <CardContent className="py-1">
+                <h2 className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-destructive">
                   Problem
                 </h2>
-                <p className="mt-2 text-sm">{cs.problem}</p>
+                <p className="mt-3 text-sm leading-relaxed">{cs.problem}</p>
               </CardContent>
             </Card>
           ) : null}
           {cs.outcome ? (
-            <Card>
-              <CardContent className="pt-6">
-                <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            <Card className="border-l-2 border-l-brand bg-muted/15">
+              <CardContent className="py-1">
+                <h2 className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-brand">
                   Outcome
                 </h2>
-                <p className="mt-2 text-sm">{cs.outcome}</p>
+                <p className="mt-3 text-sm leading-relaxed">{cs.outcome}</p>
               </CardContent>
             </Card>
           ) : null}
@@ -93,10 +93,12 @@ export default async function CaseStudyPage({
       {cs.metrics && cs.metrics.length > 0 ? (
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           {cs.metrics.map((metric) => (
-            <Card key={metric.label}>
-              <CardContent className="pt-6 text-center">
-                <p className="text-2xl font-bold text-brand">{metric.value}</p>
-                <p className="mt-1 text-xs text-muted-foreground">
+            <Card key={metric.label} className="h-full bg-muted/15">
+              <CardContent className="flex h-full flex-col justify-center py-1 text-center">
+                <p className="text-3xl font-bold tracking-tight text-brand">
+                  {metric.value}
+                </p>
+                <p className="mt-2 text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-muted-foreground">
                   {metric.label}
                 </p>
               </CardContent>

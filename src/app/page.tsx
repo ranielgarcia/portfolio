@@ -124,15 +124,15 @@ function SectionTitle({
   linkLabel?: string;
 }) {
   return (
-    <div className="mb-8 flex items-end justify-between">
+    <div className="mb-8 flex items-end justify-between gap-4">
       <h2
-        className="text-3xl font-bold tracking-tight"
+        className="text-2xl font-bold tracking-tight sm:text-3xl"
         dangerouslySetInnerHTML={{ __html: title }}
       />
       {href && linkLabel ? (
         <Link
           href={href}
-          className="inline-flex items-center gap-1 text-sm font-medium text-brand hover:underline"
+          className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-brand hover:underline"
         >
           {linkLabel} <ArrowRight className="size-4" />
         </Link>

@@ -73,14 +73,21 @@ export default function ArchitecturePage() {
       />
       <Container className="pb-8">
         <div className="grid gap-6 md:grid-cols-2">
-          {diagrams.map(({ title, description, Diagram }) => (
-            <Card key={title}>
-              <CardHeader>
-                <h2 className="text-lg font-semibold">{title}</h2>
-                <p className="text-sm text-muted-foreground">{description}</p>
+          {diagrams.map(({ title, description, Diagram }, index) => (
+            <Card key={title} className="h-full border-t-brand/35">
+              <CardHeader className="gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-md border bg-muted/50 font-mono text-[0.6875rem] font-semibold text-brand">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h2 className="text-lg font-semibold">{title}</h2>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {description}
+                </p>
               </CardHeader>
               <CardContent>
-                <div className="rounded-lg border bg-muted/30 p-4">
+                <div className="rounded-md border border-foreground/8 bg-muted/20 p-4 shadow-inner">
                   <Diagram />
                 </div>
               </CardContent>

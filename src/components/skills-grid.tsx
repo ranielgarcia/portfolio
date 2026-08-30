@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 
 export function SkillsGrid() {
   return (
-    <div className="grid auto-rows-fr gap-px overflow-hidden rounded-md border bg-border sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid auto-rows-fr gap-px overflow-hidden rounded-md border bg-border/80 shadow-[0_14px_35px_-30px_color-mix(in_oklab,var(--foreground)_35%,transparent)] sm:grid-cols-2 lg:grid-cols-3">
       {skillGroups.map((group) => {
         const Icon = group.icon;
         const [light, dark] = group.accent;
@@ -16,13 +16,15 @@ export function SkillsGrid() {
               {
                 "--skill-accent": light,
                 "--skill-accent-dark": dark,
+                boxShadow:
+                  "inset 0 2px 0 color-mix(in oklch, var(--skill-accent) 65%, transparent)",
               } as React.CSSProperties
             }
-            className="flex h-full min-h-48 flex-col items-center justify-center bg-background px-6 py-8 text-center transition-colors hover:bg-muted/35"
+            className="flex h-full min-h-48 flex-col items-center justify-center bg-card px-6 py-8 text-center"
           >
             <div className="flex items-center justify-center gap-3">
               <span
-                className="flex size-10 shrink-0 items-center justify-center rounded-md"
+                className="flex size-10 shrink-0 items-center justify-center rounded-md border border-current/10"
                 style={
                   {
                     backgroundColor:
@@ -37,7 +39,11 @@ export function SkillsGrid() {
             </div>
             <div className="mt-5 flex flex-wrap justify-center gap-1.5">
               {group.skills.map((skill) => (
-                <Badge key={skill} variant="secondary" className="font-normal">
+                <Badge
+                  key={skill}
+                  variant="secondary"
+                  className="border border-foreground/5 bg-muted/70 font-normal text-muted-foreground"
+                >
                   {skill}
                 </Badge>
               ))}

@@ -28,38 +28,62 @@ export default function CaseStudiesPage() {
           <p className="text-muted-foreground">Case studies are on the way.</p>
         ) : (
           <div className="grid gap-4 md:grid-cols-2">
-            {caseStudies.map((cs) => (
-              <Card
-                key={cs.slug}
-                className="group relative flex h-full flex-col transition-colors hover:border-brand/50"
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-3">
-                    <h2 className="text-lg font-semibold">
-                      <Link
-                        href={`/case-studies/${cs.slug}`}
-                        className="after:absolute after:inset-0"
+            {caseStudies.map((cs) => {
+              const technologies = cs.technologies ?? [];
+              const visibleTechnologies = technologies.slice(0, 5);
+              const remainingTechnologies =
+                technologies.length - visibleTechnologies.length;
+
+              return (
+                <Card
+                  key={cs.slug}
+                  className="card-interactive group relative h-full"
+                >
+                  <CardHeader className="gap-4 pb-1">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-brand">
+                        Case study
+                      </p>
+                      <span className="flex size-8 shrink-0 items-center justify-center rounded-md border bg-background/70 text-muted-foreground transition-colors group-hover:text-brand group-focus-within:text-brand">
+                        <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                    <div className="space-y-2">
+                      <h2 className="text-lg font-semibold leading-snug">
+                        <Link
+                          href={`/case-studies/${cs.slug}`}
+                          className="outline-none after:absolute after:inset-0"
+                        >
+                          {cs.title}
+                        </Link>
+                      </h2>
+                      <p className="text-sm leading-relaxed text-muted-foreground">
+                        {cs.summary}
+                      </p>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="mt-auto flex flex-wrap gap-1.5 pt-2">
+                    {visibleTechnologies.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="font-normal text-muted-foreground"
                       >
-                        {cs.title}
-                      </Link>
-                    </h2>
-                    <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
-                  </div>
-                  <p className="text-sm text-muted-foreground">{cs.summary}</p>
-                </CardHeader>
-                <CardContent className="mt-auto flex flex-wrap gap-1.5">
-                  {(cs.technologies ?? []).map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="secondary"
-                      className="font-normal"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </CardContent>
-              </Card>
-            ))}
+                        {tech}
+                      </Badge>
+                    ))}
+                    {remainingTechnologies > 0 ? (
+                      <Badge
+                        variant="outline"
+                        className="font-normal text-muted-foreground"
+                      >
+                        +{remainingTechnologies}
+                      </Badge>
+                    ) : null}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         )}
       </Container>
