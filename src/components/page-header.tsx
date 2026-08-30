@@ -13,7 +13,12 @@ export function PageHeader({
   className?: string;
 }) {
   return (
-    <Container className={cn("pt-12 pb-8 md:pt-16", className)}>
+    <Container
+      className={cn(
+        "border-b construction-divider pt-12 pb-8 md:pt-16",
+        className,
+      )}
+    >
       <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h1>
       {description ? (
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">

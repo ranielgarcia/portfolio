@@ -53,6 +53,7 @@
 }
 
 :root {
+  --construction-content-width: calc(100% - 2rem);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --brand: oklch(0.54 0.21 264);
@@ -134,6 +135,58 @@
   }
   html {
     @apply font-sans scroll-smooth;
+  }
+}
+
+/* Tailwind-inspired page construction lines. */
+.site-construction-lines {
+  --construction-line: color-mix(in oklab, var(--border) 82%, transparent);
+  --construction-hatch: color-mix(in oklab, var(--border) 52%, transparent);
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.site-construction-lines::before,
+.site-construction-lines::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2rem;
+  border-inline: 1px solid var(--construction-line);
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 4px,
+    var(--construction-hatch) 4px,
+    var(--construction-hatch) 5px
+  );
+}
+
+.site-construction-lines::before {
+  left: calc(50% - var(--construction-content-width) / 2);
+}
+
+.site-construction-lines::after {
+  right: calc(50% - var(--construction-content-width) / 2);
+}
+
+.construction-divider {
+  border-color: color-mix(in oklab, var(--border) 82%, transparent);
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --construction-content-width: calc(100% - 3rem);
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --construction-content-width: min(64rem, calc(100% - 4rem));
   }
 }
 

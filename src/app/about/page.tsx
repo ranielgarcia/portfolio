@@ -21,8 +21,8 @@ export default function AboutPage() {
         description={siteConfig.shortBio}
       />
 
-      <Container className="space-y-16 pb-8">
-        <section className="grid gap-8 md:grid-cols-3">
+      <Container className="pb-8">
+        <section className="grid gap-8 border-b construction-divider py-12 md:grid-cols-3">
           <div className="space-y-4 md:col-span-2">
             {about.summary.map((paragraph) => (
               <p key={paragraph} className="text-muted-foreground">
@@ -47,7 +47,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section>
+        <section className="border-b construction-divider py-12">
           <h2 className="mb-4 text-2xl font-bold tracking-tight">
             Software Philosophy
           </h2>
@@ -61,14 +61,14 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section>
+        <section className="border-b construction-divider py-12">
           <h2 className="mb-6 text-2xl font-bold tracking-tight">
             Skills &amp; Tooling
           </h2>
           <SkillsGrid />
         </section>
 
-        <section>
+        <section className="py-12">
           <h2 className="mb-4 text-2xl font-bold tracking-tight">Fun Facts</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {funFacts.map((fact) => {

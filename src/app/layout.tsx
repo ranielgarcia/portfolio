@@ -56,21 +56,24 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="relative min-h-full">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
+          <div aria-hidden="true" className="site-construction-lines" />
+          <div className="relative z-10 flex min-h-full flex-col">
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+          </div>
         </ThemeProvider>
-      {/* impeccable-live-start */}
-<script src="http://localhost:8400/live.js?token=b5485239-2fec-4172-865c-d67c9dcbee31"></script>
-{/* impeccable-live-end */}
-</body>
+        {/* impeccable-live-start */}
+        <script src="http://localhost:8400/live.js?token=b5485239-2fec-4172-865c-d67c9dcbee31"></script>
+        {/* impeccable-live-end */}
+      </body>
     </html>
   );
 }
