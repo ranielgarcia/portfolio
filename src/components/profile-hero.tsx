@@ -146,17 +146,40 @@ export function ProfileHero() {
         </div>
       </figure>
 
-      <div className="flex min-h-96 items-center rounded-lg border border-border bg-background/80 p-5 shadow-xl shadow-black/10 ring-1 ring-foreground/5 backdrop-blur-sm sm:p-8 lg:min-h-0">
-        <article className="grid w-full items-center gap-6 text-center sm:grid-cols-[8rem_minmax(0,1fr)] sm:text-left lg:grid-cols-[7.5rem_minmax(0,1fr)]">
-          <Image
-            src="/profile.png"
-            alt={siteConfig.name}
-            width={168}
-            height={168}
-            priority
-            className="mx-auto size-32 rounded-md border border-border object-cover shadow-lg sm:mx-0 lg:size-30"
-          />
-          <div>
+      <div className="relative isolate flex min-h-96 min-w-0 items-center overflow-hidden rounded-lg border border-border bg-card p-5 sm:p-8 lg:min-h-0">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-35"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, color-mix(in oklab, var(--foreground) 22%, transparent) 1px, transparent 1px)",
+            backgroundSize: "18px 18px",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-3 rounded-md border border-border/70"
+        >
+          <span className="absolute -top-px -right-px size-5 border-t border-r border-brand/70" />
+          <span className="absolute -bottom-px -left-px size-5 border-b border-l border-brand/70" />
+        </div>
+
+        <article className="relative z-10 grid w-full grid-cols-[minmax(0,1fr)] items-center gap-6 text-center sm:grid-cols-[8rem_minmax(0,1fr)] sm:text-left lg:grid-cols-[7.5rem_minmax(0,1fr)]">
+          <div className="relative mx-auto size-32 sm:mx-0 lg:size-30">
+            <span
+              aria-hidden
+              className="absolute inset-0 translate-x-1.5 translate-y-1.5 rounded-md border border-brand/40 bg-brand/10"
+            />
+            <Image
+              src="/profile.png"
+              alt={siteConfig.name}
+              width={168}
+              height={168}
+              priority
+              className="relative size-full rounded-md border border-border object-cover shadow-lg"
+            />
+          </div>
+          <div className="min-w-0">
             <p className="text-xs font-semibold uppercase text-brand">
               {siteConfig.role}
             </p>
