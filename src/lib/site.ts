@@ -1,35 +1,29 @@
-import {
-  Github,
-  Linkedin,
-  Mail,
-  StackOverflowIcon,
-  type IconType,
-} from "@/components/icons";
+import { Github, Linkedin, Mail, type IconType } from "@/components/icons";
 
 export const siteConfig = {
   name: "Raniel Garcia",
   role: "Senior Software Engineer",
-  specialization: ".NET & Azure • Distributed Systems • Cloud Architecture",
+  specialization: ".NET & Azure | Full-Stack Development | DevOps",
   shortBio:
-    "I design and build reliable, well-architected backend systems and cloud-native applications with .NET and Azure.",
+    "I build web applications, APIs, and cloud infrastructure with .NET, Azure, and modern JavaScript frameworks.",
   url: "https://ranielgarcia.dev",
-  email: "hello@ranielgarcia.dev",
-  location: "Manila, Philippines",
+  email: "ranielgarcia2020@gmail.com",
+  location: "Tarlac City, Philippines",
   locale: "en-US",
   ogImage: "/og.png",
   description:
-    "Personal portfolio of Raniel Garcia — a senior software engineer specializing in .NET, Azure, and distributed systems. Case studies, architecture write-ups, and technical blogs.",
+    "Personal portfolio of Raniel Garcia, a senior software engineer with over 8 years of experience building .NET, Azure, full-stack, DevOps, and infrastructure-as-code solutions.",
   keywords: [
     "Raniel Garcia",
     "Software Engineer",
     ".NET",
     "ASP.NET Core",
     "Azure",
-    "Distributed Systems",
-    "Software Architecture",
-    "Clean Architecture",
-    "CQRS",
-    "DDD",
+    "React",
+    "Next.js",
+    "Azure DevOps",
+    "Terraform",
+    "Bicep",
   ],
 } as const;
 
@@ -58,13 +52,8 @@ export const socialLinks: SocialLink[] = [
   { label: "GitHub", href: "https://github.com/ranielgarcia", icon: Github },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/ranielgarcia",
+    href: "https://www.linkedin.com/in/ranielgarcia2020",
     icon: Linkedin,
-  },
-  {
-    label: "Stack Overflow",
-    href: "https://stackoverflow.com/users/0000000/ranielgarcia",
-    icon: StackOverflowIcon,
   },
   { label: "Email", href: `mailto:${siteConfig.email}`, icon: Mail },
 ];

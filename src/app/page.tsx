@@ -10,7 +10,7 @@ import { Recommendations } from "@/components/recommendations";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getFeaturedProjects, getAllPosts } from "@/lib/content";
-import { ArrowRight, Download, BookOpen } from "@/components/icons";
+import { ArrowRight, FileText, BookOpen } from "@/components/icons";
 
 export default function HomePage() {
   const featured = getFeaturedProjects().slice(0, 3);
@@ -50,7 +50,7 @@ export default function HomePage() {
               </Button>
               <Button asChild size="lg" variant="ghost">
                 <Link href="/resume">
-                  <Download className="size-4" /> Download Resume
+                  <FileText className="size-4" /> View Resume
                 </Link>
               </Button>
             </div>
