@@ -29,9 +29,9 @@ export function ExperienceTimeline() {
               </ul>
             </div>
             <div>
-              <p className="mb-1.5 font-medium">Achievements</p>
+              <p className="mb-1.5 font-medium">Highlights</p>
               <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
-                {job.achievements.map((item) => (
+                {job.highlights.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>

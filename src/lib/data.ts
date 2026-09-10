@@ -18,11 +18,11 @@ import {
 
 export const about = {
   summary: [
-    "I'm a senior software engineer with a focus on backend and cloud-native development using .NET and Azure. I care deeply about designing systems that are correct, observable, and easy to evolve.",
-    "My work spans domain modeling, API design, messaging and event-driven workflows, and building the infrastructure that keeps those systems running reliably in production.",
+    "I'm a senior software engineer with over 8 years of experience building and maintaining web applications, services, and infrastructure in the .NET ecosystem.",
+    "My work spans full-stack application development, REST APIs, cloud services, DevOps pipelines, testing, and infrastructure as code using Azure, Azure DevOps, Terraform, and Bicep.",
   ],
   yearsOfExperience: 8,
-  industries: ["Education", "Fintech", "Logistics", "SaaS"],
+  industries: ["Semiconductor", "Retail", "Higher Education"],
   philosophy: [
     "Architecture is about deferring and isolating decisions, not adding layers for their own sake.",
     "Make the implicit explicit — model the domain, name the concepts, and let the code tell the story.",
@@ -63,47 +63,51 @@ export const skillGroups: SkillGroup[] = [
     icon: Server,
     accent: ["oklch(0.52 0.18 290)", "oklch(0.70 0.14 285)"],
     skills: [
+      ".NET",
+      ".NET Core",
       "ASP.NET Core",
       "EF Core",
-      "FastEndpoints",
-      "SignalR",
-      "Wolverine",
+      "Dapper",
+      "REST APIs",
+      "GraphQL",
     ],
   },
   {
     title: "Frontend",
     icon: Layers,
     accent: ["oklch(0.54 0.16 220)", "oklch(0.72 0.13 215)"],
-    skills: ["React", "Next.js", "Tailwind CSS"],
+    skills: ["React", "Next.js", "Node.js", "AG Grid", "jQuery", "Bootstrap"],
   },
   {
-    title: "Cloud",
+    title: "Cloud & DevOps",
     icon: Cloud,
     accent: ["oklch(0.54 0.15 200)", "oklch(0.72 0.12 200)"],
     skills: [
-      "Azure App Service",
+      "Azure",
+      "Azure DevOps",
       "Azure SQL",
-      "Azure Storage",
-      "Key Vault",
-      "Application Insights",
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "Bicep",
     ],
   },
   {
     title: "Databases",
     icon: Database,
     accent: ["oklch(0.52 0.15 172)", "oklch(0.70 0.12 170)"],
-    skills: ["SQL Server", "Azure SQL", "Cosmos DB", "MySQL"],
+    skills: ["SQL Server", "T-SQL", "Azure SQL", "MySQL"],
   },
   {
-    title: "DevOps",
+    title: "Platform & Quality",
     icon: GitBranch,
     accent: ["oklch(0.52 0.14 145)", "oklch(0.70 0.11 145)"],
     skills: [
-      "Azure DevOps",
-      "GitHub Actions",
-      "Docker",
-      "Kubernetes",
-      "Terraform",
+      "Git",
+      "Unit Testing",
+      "Integration Testing",
+      "IIS",
+      "Virtual Machines",
     ],
   },
 ];
@@ -119,71 +123,93 @@ export type Experience = {
   location: string;
   responsibilities: string[];
   technologies: string[];
-  achievements: string[];
+  highlights: string[];
 };
 
 export const experiences: Experience[] = [
   {
-    company: "Northwind Cloud",
-    role: "Senior Software Engineer",
-    duration: "2022 — Present",
-    location: "Remote",
+    company: "Accenture Philippines",
+    role: "Senior App Development Specialist",
+    duration: "Aug 2021 — Present",
+    location: "Philippines",
     responsibilities: [
-      "Lead the design of a multi-tenant SaaS platform on Azure using Clean Architecture and CQRS.",
-      "Own the messaging backbone (Wolverine) for asynchronous, event-driven workflows.",
-      "Mentor engineers on domain-driven design and testing strategy.",
+      "Develop and maintain complex web applications, services, and infrastructure using Microsoft technologies.",
+      "Upgrade and optimize web applications, APIs, databases, Azure DevOps pipelines, and Terraform infrastructure.",
+      "Build complex applications from scratch in Agile delivery teams.",
     ],
     technologies: [
+      ".NET",
+      "C#",
       "ASP.NET Core",
-      "Wolverine",
-      "Azure SQL",
-      "Cosmos DB",
-      "Kubernetes",
-    ],
-    achievements: [
-      "Cut p95 API latency by 40% through query tuning and caching.",
-      "Introduced trunk-based delivery with GitHub Actions, reducing lead time to hours.",
-    ],
-  },
-  {
-    company: "Meridian Fintech",
-    role: "Software Engineer",
-    duration: "2019 — 2022",
-    location: "Manila, PH",
-    responsibilities: [
-      "Built real-time transaction dashboards with SignalR and React.",
-      "Designed EF Core data access with a focus on correctness and performance.",
-      "Implemented observability with Application Insights across services.",
-    ],
-    technologies: [
-      "ASP.NET Core",
-      "SignalR",
+      "React",
+      "Next.js",
+      "AG Grid",
+      "GraphQL",
       "EF Core",
-      "SQL Server",
-      "Azure App Service",
+      "Azure SQL",
+      "Azure DevOps",
+      "Terraform",
     ],
-    achievements: [
-      "Delivered a fraud-signal pipeline processing millions of events per day.",
-      "Reduced report generation time from minutes to seconds.",
+    highlights: [
+      "Contributed to a complex trade-planning system alongside senior developers, building .NET APIs and services, frontend components, Terraform infrastructure, and custom command-line tools.",
+      "Implemented unit and integration tests to support system reliability.",
     ],
   },
   {
-    company: "BrightPath Solutions",
-    role: "Full-Stack Developer",
-    duration: "2017 — 2019",
-    location: "Manila, PH",
+    company: "ON Semiconductor Philippines",
+    role: "Applications Engineer",
+    duration: "May 2017 — Jul 2021",
+    location: "Tarlac, Philippines",
     responsibilities: [
-      "Migrated a legacy PHP application to a modern .NET stack.",
-      "Developed customer-facing features across the front and back end.",
+      "Served as the primary liaison between Manufacturing Operations and IT for automation and system improvements supporting Assembly and Test operations.",
+      "Developed and maintained web-based applications and solutions deployed within operations.",
+      "Supported the development, testing, and sustainment of IT applications used in manufacturing processes.",
     ],
-    technologies: ["ASP.NET Core", "MySQL", "JavaScript", "Docker"],
-    achievements: [
-      "Led a phased migration with zero unplanned downtime.",
-      "Established the team's first automated CI pipeline.",
+    technologies: [
+      "C#",
+      "ASP.NET MVC",
+      "PHP",
+      "Dapper",
+      "MySQL",
+      "jQuery",
+      "Bootstrap",
+      "IIS",
+      "Virtual Machines",
+    ],
+    highlights: [
+      "Delivered automation and web-based solutions that supported manufacturing operations.",
     ],
   },
 ];
 
+/* ------------------------------------------------------------------ */
+/* Education & certifications                                          */
+/* ------------------------------------------------------------------ */
+
+export type Education = {
+  degree: string;
+  institution: string;
+  year: string;
+};
+
+export const education: Education[] = [
+  {
+    degree: "BS in Computer Science",
+    institution: "Tarlac State University",
+    year: "2017",
+  },
+];
+
+export const certifications = [
+  "AZ-900 - Microsoft Azure Fundamentals",
+  "DP-900 - Microsoft Azure Data Fundamentals",
+  "SC-900 - Microsoft Security, Compliance, and Identity Fundamentals",
+  "AI-900 - Microsoft Azure AI Fundamentals",
+  "AZ-200 - Azure Developer Associate",
+  "AZ-104 - Microsoft Azure Administrator",
+  "AZ-400 - Designing and Implementing Microsoft DevOps Solutions",
+  "Terraform Associate (003) Certification",
+];
 /* ------------------------------------------------------------------ */
 /* Recommendations                                                     */
 /* ------------------------------------------------------------------ */

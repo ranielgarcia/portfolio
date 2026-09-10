@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PrintButton } from "@/components/print-button";
-import { experiences, skillGroups, about } from "@/lib/data";
+import {
+  about,
+  certifications,
+  education,
+  experiences,
+  skillGroups,
+} from "@/lib/data";
 import { siteConfig, socialLinks } from "@/lib/site";
-import { Download } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Resume",
   description: `Resume of ${siteConfig.name} — ${siteConfig.role}.`,
 };
-
-const RESUME_PDF = "/Raniel-Garcia-Resume.pdf";
 
 export default function ResumePage() {
   return (
@@ -21,17 +23,10 @@ export default function ResumePage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Resume</h1>
           <p className="mt-1 text-muted-foreground">
-            View, print, or download a copy.
+            Review my professional experience and qualifications.
           </p>
         </div>
-        <div className="flex gap-2">
-          <PrintButton />
-          <Button asChild>
-            <a href={RESUME_PDF} download>
-              <Download className="size-4" /> Download PDF
-            </a>
-          </Button>
-        </div>
+        <PrintButton />
       </div>
 
       <article className="mt-10 space-y-8">
@@ -79,7 +74,7 @@ export default function ResumePage() {
                   </p>
                 </div>
                 <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-                  {job.achievements.map((item) => (
+                  {job.highlights.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
@@ -110,6 +105,37 @@ export default function ResumePage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section>
+          <h3 className="mb-3 text-xs font-semibold tracking-wide text-muted-foreground">
+            Education
+          </h3>
+          <div className="space-y-3">
+            {education.map((item) => (
+              <div
+                key={`${item.institution}-${item.degree}`}
+                className="flex flex-wrap items-baseline justify-between gap-2 text-sm"
+              >
+                <p className="font-semibold">{item.degree}</p>
+                <p className="text-muted-foreground">{item.year}</p>
+                <p className="basis-full text-muted-foreground">
+                  {item.institution}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h3 className="mb-3 text-xs font-semibold tracking-wide text-muted-foreground">
+            Certifications
+          </h3>
+          <ul className="grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+            {certifications.map((certification) => (
+              <li key={certification}>{certification}</li>
+            ))}
+          </ul>
         </section>
       </article>
     </Container>
