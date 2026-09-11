@@ -76,6 +76,14 @@ export function Linkedin(props: LucideProps) {
   );
 }
 
+export function Upwork(props: LucideProps) {
+  return (
+    <BrandSvg {...props}>
+      <path d="M12.5 2c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5zm0 1c1.38 0 2.5 1.12 2.5 2.5S13.88 10.5 12.5 10.5 10 9.38 10 8s1.12-2.5 2.5-2.5zm-5 6c-1.1 0-2 .9-2 2v8.5c0 1.1.9 2 2 2h1v-1H7.5v-8.5H7.5c0-.55.45-1 1-1h5.5c1.1 0 2-.9 2-2v-1h-1c-1.1 0-2 .9-2 2v1H7.5zm8 0c-1.1 0-2 .9-2 2v8.5c0 1.1.9 2 2 2h1v-1h-1.5v-8.5h1.5c0-.55.45-1 1-1h5.5c1.1 0 2-.9 2-2v-1h-1c-1.1 0-2 .9-2 2v1h-5.5z" />
+    </BrandSvg>
+  );
+}
+
 export function StackOverflowIcon(props: LucideProps) {
   return (
     <svg

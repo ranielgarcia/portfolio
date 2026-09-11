@@ -6,7 +6,7 @@ export function SocialLinks({ className }: { className?: string }) {
   return (
     <div className={cn("flex items-center gap-1", className)}>
       {socialLinks.map((link) => {
-        const Icon = link.icon;
+        const isString = typeof link.icon === "string";
         return (
           <Button
             key={link.label}
@@ -16,7 +16,15 @@ export function SocialLinks({ className }: { className?: string }) {
             aria-label={link.label}
           >
             <a href={link.href} target="_blank" rel="noreferrer noopener">
-              <Icon className="size-5" />
+              {isString ? (
+                <img
+                  src={link.icon}
+                  alt={link.label}
+                  className="size-5 dark:invert"
+                />
+              ) : (
+                <link.icon className="size-5" />
+              )}
             </a>
           </Button>
         );

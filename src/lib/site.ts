@@ -45,7 +45,7 @@ export const mainNav: NavItem[] = [
 export type SocialLink = {
   label: string;
   href: string;
-  icon: IconType;
+  icon: IconType | string;
 };
 
 export const socialLinks: SocialLink[] = [
@@ -54,6 +54,11 @@ export const socialLinks: SocialLink[] = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/ranielgarcia2020",
     icon: Linkedin,
+  },
+  {
+    label: "Upwork",
+    href: "https://www.upwork.com/freelancers/~01050e824656af667e?mp_source=share",
+    icon: "/Upwork-Logo-Black.svg",
   },
   { label: "Email", href: `mailto:${siteConfig.email}`, icon: Mail },
 ];

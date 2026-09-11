@@ -224,6 +224,13 @@ export type Recommendation = {
 
 export const recommendations: Recommendation[] = [
   {
+    name: "Alexan Ocampo",
+    position: "Business Owner",
+    company: "Upwork.com",
+    quote:
+      "Raniel is very knowledgeable and professional. He was able to deliver excellent quality work in a very timely manner and is very dedicated to deadlines. He completed the project in less time than expected with no issues or problems. Raniel is very polite and was easy to communicate with. He was fast to address feedback and was very patient in walking me thoroughly through the process of the project to help me better understand and learn. He had always provided me with detailed explanations and information which I really appreciate a lot. Beyond grateful to have been able to work on this project with Raniel. Would absolutely recommend!",
+  },
+  {
     name: "Sofia Delgado",
     position: "Engineering Manager",
     company: "Northwind Cloud",
