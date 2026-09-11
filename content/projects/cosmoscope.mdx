@@ -14,7 +14,7 @@ technologies:
   - Cosmos DB
 github: "https://github.com/ranielgarcia/My-Azure-CosmosDB-Data-Explorer"
 demo: ""
-cover: ""
+cover: "/projects/cosmoscope/Whole.png"
 featured: true
 order: 3
 ---
@@ -24,6 +24,9 @@ order: 3
 CosmoScope Cosmos DB Data Explorer is a custom-built tool designed for the Support team as a streamlined alternative to the Azure Portal Cosmos DB Data Explorer.
 
 The tool enables support team members to quickly investigate issues encountered within the X application by providing direct access to Cosmos DB data through an interface tailored to operational support workflows. Unlike the standard Azure Portal experience, CosmoScope focuses on making application data easier to understand and analyze, reducing the time required to troubleshoot incidents and validate business processes.
+
+![CosmoScope full interface overview showing database tree, query editor, and results](/projects/cosmoscope/Whole.png)
+_Full CosmoScope interface with database browser, query editor, and query results side-by-side_
 
 ## 🎯 Why I Built This
 
@@ -62,19 +65,35 @@ The standout feature of CosmoScope is its **store-aware context**, which bridges
 
 Support users can select a store once and continue working within that store's context throughout their investigation. The explorer enriches query results with operational information relevant to the selected store, including:
 
+#### Store Selection
+
+![Store selection dropdown interface showing available stores](/projects/cosmoscope/Store%20Selection.png)
+_Store selection dropdown allowing support engineers to quickly switch investigation context_
+
+#### Store Information and Operating Hours
+
 - **Store information and operating hours**, sourced directly from store master data.
+
+![Store details panel displaying hours and location information](/projects/cosmoscope/Store-details.png)
+_Store details panel showing operating hours, location, and key store metadata_
+
+#### Automatic Timezone Conversion
+
 - **Automatic timezone conversion**, displaying UTC timestamps in both the selected store's local timezone and the user's local timezone, eliminating the need for manual timezone calculations.
 
-e.g.
+![UTC to local timezone conversion annotation showing store and user local times](/projects/cosmoscope/UTC-datetime-convertion-annotation.png)
+_Automatic timezone conversion displaying UTC, store-local, and user-local times side-by-side_
+
+#### Stockroom Zone Visibility
 
 - **Stockroom zone visibility**, showing the current status of stockroom zones, last reset timestamps, responsible operator, and device information.
+
+![Stockroom zones reset status panel with zone information and last reset timestamps](/projects/cosmoscope/Stockroom-zones-reset-status.png)
+_Stockroom zones panel showing current reset status, operators, and device information_
+
+#### Persistent Store Selection
+
 - **Persistent store selection**, allowing investigators to maintain context across page refreshes and browser sessions.
-
-Select a store
-
-Store Information
-
-Store Stockroom Reset Information
 
 By embedding store-specific information directly into the investigation workflow, support engineers can more easily correlate Cosmos DB data with store operations and business events.
 
@@ -96,7 +115,10 @@ For example, a raw value such as:
 "documentType": 1
 ```
 
-is automatically displayed as:
+is automatically displayed with meaningful business labels:
+
+![Enum value data annotations showing raw integer values translated to human-readable labels](/projects/cosmoscope/Enum-value-data-annotations.png)
+_Enum values automatically annotated with business-meaningful labels in query results_
 
 Similarly, UTC timestamps are enriched with store-local time and user-local time equivalents, providing immediate business context during investigations.
 
@@ -110,12 +132,18 @@ These enhancements significantly reduce the effort required to interpret Cosmos 
 - Click a container to open (or re-activate) a query tab — no duplicate tabs
 - Refresh button reloads the whole database tree and store cache in one click.
 
+![Database and container tree view with collapsible containers and partition key tooltips](/projects/cosmoscope/Database-and-containers.png)
+_Database tree browser with collapsible containers and partition-key information_
+
 ---
 
 ## 📝 Query Editor
 
 - Full Monaco editor with **Cosmos SQL syntax highlighting** and **IntelliSense** for keywords/functions.
 - **Live schema-aware field autocomplete** — typing `c.` suggests actual fields (including nested, e.g. `c.address.city`) discovered from your last result set.
+
+![Monaco editor showing IntelliSense suggestions and Cosmos SQL syntax highlighting](/projects/cosmoscope/Intellisense.png)
+_Live schema-aware IntelliSense providing field suggestions from your result set_
 
 - Run with a button or **Ctrl+Enter**; can execute just a **highlighted selection**.
 - Cursor position indicator, resizable editor pane, default `SELECT * FROM c` template on new tabs/subtabs.
@@ -126,9 +154,15 @@ These enhancements significantly reduce the effort required to interpret Cosmos 
 
 - Toggle between **JSON view** (syntax-highlighted, foldable, copy-to-clipboard) and **table view** (configurable columns, click a row for full JSON detail)
 
-Table view:
+#### Table View
 
-JSON view
+![Table view showing query results with configurable columns and sortable headers](/projects/cosmoscope/Table-view.png)
+_Table view with configurable columns — click any row to expand and view full JSON_
+
+#### JSON View
+
+![Syntax-highlighted JSON view with foldable objects and copy-to-clipboard functionality](/projects/cosmoscope/Json-View.png)
+_Syntax-highlighted JSON view with foldable objects and inline copy button_
 
 - **Load more** pagination that transparently follows Cosmos continuation tokens under the hood (server aggregates pages up to 100 items internally).
 
@@ -142,9 +176,13 @@ JSON view
 
 - **Multiple tabs**, each with **multiple named subtabs** for running variations of a query against the same container.
 
-Double click the subtab to rename
+![Tab and subtab structure showing multiple named subtabs for query variations](/projects/cosmoscope/Tab-Subtabs.png)
+_Multiple named subtabs for organizing query variations — double-click to rename_
 
 - **Up to 3 side-by-side panes** — drag a tab to the screen edge to split, resize panes freely.
+
+![Multiple side-by-side panes with drag-and-drop repositioning](/projects/cosmoscope/Multiple-tabs.png)
+_Three-pane layout showing database browser, query editor, and results side-by-side_
 
 - **Full session persistence** — tab/subtab structure, query text, pane layout, and column widths are saved to SQLite and restored after a restart.
 - Fully resizable, collapsible left/right sidebars and editor pane, with keyboard support (arrow keys, Home-to-reset) and drag-and-drop tab reordering.
@@ -154,6 +192,9 @@ Double click the subtab to rename
 ## ⭐ Saved Queries
 
 - Save, rename, search, copy, and delete queries — scoped per database/container, persisted server-side so nothing is lost between sessions
+
+![Saved queries panel with search and management controls](/projects/cosmoscope/Save-queries.png)
+_Saved queries panel with search, rename, copy, and delete functionality_
 
 ## 🔒 Security & Safety
 
