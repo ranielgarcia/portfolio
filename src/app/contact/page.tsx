@@ -27,22 +27,27 @@ export default function ContactPage() {
                 Elsewhere
               </h2>
               <ul className="space-y-2">
-                {socialLinks.map((link) => {
-                  const Icon = link.icon;
-                  return (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                      >
-                        <Icon className="size-4" />
-                        {link.label}
-                      </a>
-                    </li>
-                  );
-                })}
+                {socialLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {typeof link.icon === "string" ? (
+                        <img
+                          src={link.icon}
+                          alt=""
+                          className="size-4 dark:invert"
+                        />
+                      ) : (
+                        <link.icon className="size-4" />
+                      )}
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </aside>
