@@ -55,7 +55,11 @@ export default function ResumePage() {
           <h3 className="mb-2 text-xs font-semibold tracking-wide text-muted-foreground">
             Summary
           </h3>
-          <p className="text-sm text-muted-foreground">{about.summary[0]}</p>
+          {about.summary.map((paragraph) => (
+            <p key={paragraph} className="text-sm text-muted-foreground">
+              {paragraph}
+            </p>
+          ))}
         </section>
 
         <section>
