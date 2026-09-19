@@ -18,7 +18,10 @@ import {
 
 export const about = {
   summary: [
-    "Senior Full-Stack Developer with 8+ years of experience building and maintaining enterprise-grade web applications, APIs, and cloud infrastructure. Skilled in .NET, C#, React, Next.js, Azure, Terraform, and DevOps practices, with strong experience in complex systems development using agile methodologies. Passionate about scalable architecture, API design, multi-tenant systems, and delivering reliable software solutions.",
+    "Senior Software Engineer with 8+ years of experience designing, developing, and maintaining enterprise applications using C#, .NET, REST APIs, SQL Server, and Microsoft Azure.",
+    "Experienced across the full software development lifecycle, including backend services, web applications, database development, automated testing, CI/CD, and Infrastructure as Code using Terraform and Bicep.",
+    "Strong background in modernizing existing systems, developing scalable APIs and services, and collaborating in Agile engineering teams. ",
+    "Hands-on experience with React, Next.js, Azure DevOps, Docker, and cloud infrastructure.",
   ],
   yearsOfExperience: 8,
   industries: ["Semiconductor", "Retail", "Higher Education"],
@@ -69,13 +72,14 @@ export const skillGroups: SkillGroup[] = [
       "Dapper",
       "REST APIs",
       "GraphQL",
+      "gRPC",
     ],
   },
   {
     title: "Frontend",
     icon: Layers,
     accent: ["oklch(0.54 0.16 220)", "oklch(0.72 0.13 215)"],
-    skills: ["React", "Next.js", "Node.js", "AG Grid", "jQuery", "Bootstrap"],
+    skills: ["React", "Next.js", "Node.js"],
   },
   {
     title: "Cloud & DevOps",
@@ -132,26 +136,39 @@ export const experiences: Experience[] = [
     duration: "Aug 2021 — Present",
     location: "Philippines",
     responsibilities: [
-      "Develop and maintain complex web applications, services, and infrastructure using Microsoft technologies.",
-      "Upgrade and optimize web applications, APIs, databases, Azure DevOps pipelines, and Terraform infrastructure.",
-      "Build complex applications from scratch in Agile delivery teams.",
+      "Developed comprehensive unit and integration test suites for .NET APIs and services, improving regression coverage and helping reduce the risk of defects during application changes and enhancements.",
+      "Designed and developed standalone support tools that streamlined recurring operational tasks and improved the efficiency of the support team's day-to-day activities.",
+      "Contributed to the end-to-end development of complex enterprise applications within an Agile team, participating across the frontend, backend, database design, and infrastructure layers throughout the software development lifecycle.",
+      "Improved the performance of existing applications and services by optimizing data retrieval and processing logic, as well as SQL queries, resulting in a more responsive user experience.",
+      "Designed and developed REST APIs consumed by downstream systems to retrieve and consolidate data from multiple sources, including Azure Cosmos DB, SQL Server, and SharePoint.",
+      "Implemented new features and enhancements across an existing SharePoint application, backend APIs, and supporting services, while maintaining compatibility with existing functionality.",
+      "Supported and maintained an inventory management application used across multiple states and time zones in Australia, contributing to application reliability, troubleshooting, and ongoing enhancements.",
+      "Worked extensively with React, Next.js, Azure DevOps, Docker, and cloud infrastructure as part of application development, deployment, and maintenance activities.",
     ],
     technologies: [
       ".NET",
       "C#",
       "ASP.NET Core",
+      "REST APIs",
+      "Entity Framework Core",
       "React",
       "Next.js",
       "AG Grid",
       "GraphQL",
       "EF Core",
-      "Azure SQL",
+      "Docker",
+      "Kubernetes",
+      "ArgoCD",
+      "SharePoint Online",
+      "SQL Server/Database",
+      "Azure Cosmos Db",
+      "Azure",
       "Azure DevOps",
       "Terraform",
     ],
     highlights: [
-      "Contributed to a complex trade-planning system alongside senior developers, building .NET APIs and services, frontend components, Terraform infrastructure, and custom command-line tools.",
-      "Implemented unit and integration tests to support system reliability.",
+      "Contributed to the end-to-end development of complex enterprise applications within an Agile team, participating across the frontend, backend, database design, and infrastructure layers throughout the software development lifecycle.",
+      "Worked extensively with React, Next.js, Azure DevOps, Docker, and cloud infrastructure as part of application development, deployment, and maintenance activities.",
     ],
   },
   {
@@ -160,9 +177,9 @@ export const experiences: Experience[] = [
     duration: "May 2017 — Jul 2021",
     location: "Tarlac, Philippines",
     responsibilities: [
-      "Served as the primary liaison between Manufacturing Operations and IT for automation and system improvements supporting Assembly and Test operations.",
-      "Developed and maintained web-based applications and solutions deployed within operations.",
-      "Supported the development, testing, and sustainment of IT applications used in manufacturing processes.",
+      "Served as the primary liaison between Operations (Assembly & Test) and IT, ensuring the development of necessary automation and system improvements to support Manufacturing Operations.",
+      "Led the development and maintenance of web-based applications and solutions deployed within operations.",
+      "Provided support for the development, testing, and sustainment of IT applications used in manufacturing processes.",
     ],
     technologies: [
       "C#",
@@ -176,7 +193,7 @@ export const experiences: Experience[] = [
       "Virtual Machines",
     ],
     highlights: [
-      "Delivered automation and web-based solutions that supported manufacturing operations.",
+      "Led the development and maintenance of web-based applications and solutions deployed within operations.",
     ],
   },
 ];
@@ -271,15 +288,15 @@ export const uses: UsesGroup[] = [
     category: "Hardware",
     items: [
       {
-        name: '16" MacBook Pro (M3 Pro)',
+        name: "Acer Nitro AN515-55 Laptop",
         description: "Primary machine for day-to-day development.",
       },
       {
-        name: 'Dual 27" 4K monitors',
+        name: 'Dual 24" 4K monitors',
         description: "One for the editor, one for docs and terminals.",
       },
       {
-        name: "Keychron K3 (low-profile)",
+        name: "Keychron K10 Pro",
         description: "Compact mechanical keyboard with brown switches.",
       },
       {
@@ -294,6 +311,11 @@ export const uses: UsesGroup[] = [
       {
         name: "Visual Studio & VS Code",
         description: "VS for heavy .NET work, VS Code for everything else.",
+      },
+      {
+        name: "Visual Studio Community Edition",
+        description:
+          "Used for .NET development and other Microsoft ecosystem projects.",
       },
       {
         name: "JetBrains Rider",
@@ -329,6 +351,10 @@ export const uses: UsesGroup[] = [
         name: "PostgreSQL & Redis",
         description: "Reliable defaults for storage and caching.",
       },
+      {
+        name: "Azure SQL Database",
+        description: "Managed relational database service for structured data.",
+      },
     ],
   },
   {
@@ -339,12 +365,9 @@ export const uses: UsesGroup[] = [
         description: "Notes, decision records, and a personal knowledge base.",
       },
       {
-        name: "Linear",
-        description: "Lightweight issue tracking that stays out of the way.",
-      },
-      {
-        name: "Raycast",
-        description: "Launcher, clipboard history, and snippets.",
+        name: "Atlassian Jira and Confluence",
+        description:
+          "Team collaboration tools made by Atlassian that work together to connect project planning with documentation",
       },
     ],
   },

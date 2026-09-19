@@ -1,12 +1,12 @@
 import { Github, Linkedin, Mail, type IconType } from "@/components/icons";
 
 export const siteConfig = {
-  name: "Raniel Garcia",
+  name: "Raniel Gomez Garcia",
   role: "Senior Software Engineer",
   specialization: ".NET & Azure | Full-Stack Development | DevOps",
   shortBio:
     "I build web applications, APIs, and cloud infrastructure with .NET, Azure, and modern JavaScript frameworks.",
-  url: "https://ranielgarcia.dev",
+  url: "https://raniel.dev",
   email: "ranielgarcia2020@gmail.com",
   location: "Tarlac City, Philippines",
   locale: "en-US",
