@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
 import { Badge } from "@/components/ui/badge";
-import { PrintButton } from "@/components/print-button";
+import { DownloadResumeButton } from "./download-resume-button";
 import {
   about,
   certifications,
@@ -26,9 +26,15 @@ export default function ResumePage() {
             Review my professional experience and qualifications.
           </p>
         </div>
-        <PrintButton />
+        <DownloadResumeButton />
       </div>
-
+      {/* <main className="h-screen">
+        <iframe
+          src="/documents/Resume.pdf"
+          className="h-full w-full border-0"
+          title="Resume"
+        />
+      </main> */}
       <article className="mt-10 space-y-8">
         <header className="space-y-1 border-b pb-6">
           <h2 className="text-2xl font-bold">{siteConfig.name}</h2>
@@ -78,7 +84,7 @@ export default function ResumePage() {
                   </p>
                 </div>
                 <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-                  {job.highlights.map((item) => (
+                  {job.responsibilities.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>

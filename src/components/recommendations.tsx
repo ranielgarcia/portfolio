@@ -11,7 +11,7 @@ export function Recommendations() {
             <span className="mb-5 flex size-9 items-center justify-center rounded-md bg-brand/10 text-brand">
               <Quote className="size-4.5" />
             </span>
-            <blockquote className="flex-1 text-[0.9375rem] leading-7 text-foreground">
+            <blockquote className="flex-1 text-[0.9375rem] leading-7 text-foreground ">
               {rec.quote}
             </blockquote>
             <div className="mt-6 flex items-center gap-3 border-t pt-4">
