@@ -18,8 +18,7 @@ import {
 
 export const about = {
   summary: [
-    "I'm a senior software engineer with over 8 years of experience building and maintaining web applications, services, and infrastructure in the .NET ecosystem.",
-    "My work spans full-stack application development, REST APIs, cloud services, DevOps pipelines, testing, and infrastructure as code using Azure, Azure DevOps, Terraform, and Bicep.",
+    "Senior Full-Stack Developer with 8+ years of experience building and maintaining enterprise-grade web applications, APIs, and cloud infrastructure. Skilled in .NET, C#, React, Next.js, Azure, Terraform, and DevOps practices, with strong experience in complex systems development using agile methodologies. Passionate about scalable architecture, API design, multi-tenant systems, and delivering reliable software solutions.",
   ],
   yearsOfExperience: 8,
   industries: ["Semiconductor", "Retail", "Higher Education"],
